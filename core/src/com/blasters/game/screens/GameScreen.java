@@ -1,11 +1,13 @@
 package com.blasters.game.screens;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.blasters.game.gameworld.GameRenderer;
 import com.blasters.game.gameworld.GameWorld;
 
 /**
- * Created by SHELIVES on 10/31/2016.
+ * The game screen class. This is the main screen where
+ * the game will be played.
  */
 
 public class GameScreen implements Screen {
@@ -51,6 +53,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        world.dispose();
+        renderer.dispose();
     }
 }

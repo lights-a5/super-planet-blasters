@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.blasters.game.screens.GameScreen;
 
 public class SuperPlanetBlasters extends Game {
-	SpriteBatch batch;
-	Texture img;
 	
 	@Override
 	public void create () {
@@ -23,6 +21,6 @@ public class SuperPlanetBlasters extends Game {
 	
 	@Override
 	public void dispose () {
-
+		super.dispose();
 	}
 }

@@ -6,9 +6,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-/**
- * Created by SHELIVES on 10/31/2016.
- */
+/*******************************************************
+ * This Class holds the renderer for the Game World. It holds
+ * all the data necessary to draw everything on the screen while
+ * in the game world.
+ ********************************************************/
 
 public class GameRenderer {
     private GameWorld myWorld;
@@ -25,7 +27,12 @@ public class GameRenderer {
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sb.begin();
-        sb.draw(new Texture("badlogic.jpg"), 100, 100);
+        myWorld.player.draw(sb);
         sb.end();
+    }
+
+    public void dispose() {
+
+        sb.dispose();
     }
 }
