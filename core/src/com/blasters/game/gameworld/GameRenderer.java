@@ -16,6 +16,7 @@ public class GameRenderer {
     private GameWorld myWorld;
     private OrthographicCamera cam;
     private SpriteBatch sb;
+    private float accum;
 
     public GameRenderer(GameWorld world) {
         sb = new SpriteBatch();
@@ -29,6 +30,7 @@ public class GameRenderer {
         sb.begin();
         myWorld.player.draw(sb);
         sb.end();
+        accum += Gdx.graphics.getDeltaTime();
     }
 
     public void dispose() {
