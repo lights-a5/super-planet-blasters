@@ -29,6 +29,8 @@ public class GameRenderer {
         sb.begin();
         myWorld.player.draw(sb);
         sb.end();
+        System.out.println(myWorld.player.getX() + " " + myWorld.player.getY());
+        System.out.println(myWorld.player.getTexture());
     }
 
     public void dispose() {
