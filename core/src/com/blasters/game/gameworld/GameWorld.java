@@ -2,6 +2,8 @@ package com.blasters.game.gameworld;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.blasters.game.sprites.Player;
 
 /**
  * This is the world. This is where everything happens during the game.
@@ -9,11 +11,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 
 public class GameWorld {
-    public Sprite player;
+    Player player;
+    public Texture playerTexture;
 
     public GameWorld() {
-        player = new Sprite(new Texture("Blaster_player1.png"));
-        player.setPosition(100, 100);
+        playerTexture = new Texture("Blaster_player1.png");
+        player = new Player(this);
     }
 
     public void update(float delta) {
