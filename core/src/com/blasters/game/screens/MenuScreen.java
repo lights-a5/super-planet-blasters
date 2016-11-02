@@ -6,5 +6,6 @@ package com.blasters.game.screens;
 
 public class MenuScreen {
 
+    //to put menu here
 
 }
