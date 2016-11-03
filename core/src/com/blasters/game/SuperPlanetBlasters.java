@@ -3,6 +3,7 @@ package com.blasters.game;
 
 import com.badlogic.gdx.Game;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.blasters.game.screens.GameScreen;
