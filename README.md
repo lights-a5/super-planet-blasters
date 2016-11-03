@@ -12,16 +12,20 @@ Some features include:
 •	 power ups
 •	levels of difficulty 
 •	start screen
+
 Advanced Features:
 Some extra things we hope to be able to include
 •	boss battles
 •	Skins or themes
 •	“Character Dialogue”
+
 An overview of the design / approach
 The application will need to create a GUI menu on the startup. 
 1.	It will display the game logo/Title and background image
 2.	Play theme music
 3.	Display buttons
+_____________________________________________________________________________________________________________
+
 The GUI interface will wait for user input. It will create a new game instance on start,
 mute the sound if the sound off button is pressed. 
 Once the game starts It will begin the game music and the background scrolling. 
