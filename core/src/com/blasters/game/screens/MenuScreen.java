@@ -41,8 +41,7 @@ public class MenuScreen implements Screen{
     @Override
     public void resize(int width, int height) {
         super.resize( width, height );
-        final float buttonX = ( width - BUTTON_WIDTH ) / 2;
-        float currentY = 280f;
+        
 
 
     }
