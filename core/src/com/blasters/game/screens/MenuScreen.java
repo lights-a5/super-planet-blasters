@@ -6,25 +6,23 @@ package com.blasters.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.Texture;
 import com.blasters.game.SuperPlanetBlasters;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+
 
 public class MenuScreen implements Screen{
     
+    public SuperPlanetBlasters game;
+    private Texture playButton;
+    private Texture logo;
+    private Texture bg;
 
-    private OrthographicCamera camera;
-    private SpriteBatch sb;
-    public Actor button;
     public MenuScreen(SuperPlanetBlasters game) {
-
-        super();
+        playButton = new Texture("StartButn.png");
+        logo = new Texture("SPB_logo.png");
+        bg = new Texture("menuBg.jpg");
+        this.game = game;
 
     }
 
@@ -36,12 +34,20 @@ public class MenuScreen implements Screen{
 
     @Override
     public void render(float delta) {
+        //test if touched within coordinates of button
+        //game.setScreen(new Screen(GameScreen(game, isSound));
+        //test if touched within coordinates of volume button
+        //turn on or off sound
+        game.sb.begin();
+        game.sb.draw(bg, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        game.sb.draw(playButton, 100, 100, 100, 100);
+        game.sb.draw(logo, (Gdx.graphics.getWidth() / 2 - 200), Gdx.graphics.getHeight() / 2,400, 400);
+        game.sb.end();
     }
 
     @Override
     public void resize(int width, int height) {
-        super.resize( width, height );
-        
+
 
 
     }

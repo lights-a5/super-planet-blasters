@@ -7,12 +7,17 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.blasters.game.screens.GameScreen;
+import com.blasters.game.screens.MenuScreen;
 
 public class SuperPlanetBlasters extends Game {
+	public SpriteBatch sb;
 	
 	@Override
 	public void create () {
-		setScreen(new GameScreen());
+		sb = new SpriteBatch();
+
+		setScreen(new MenuScreen(this));
+
 	}
 
 	@Override

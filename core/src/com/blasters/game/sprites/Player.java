@@ -14,7 +14,7 @@ public class Player extends Ship {
     private Texture right;
     private Texture idle;
     public Player(GameWorld world) {
-        idle = world.playerTexture;
+       // idle = world.playerTexture;
         setRegion(idle);
         setPosition(100, 100);
     }
