@@ -8,7 +8,10 @@ import com.blasters.game.gameworld.GameWorld;
 
 
 /**
- * Created by SHELIVES on 11/2/2016.
+ * Bullet
+ * This class is used to hold the main bullets that the ship fires. Later on, I expect that
+ * we will make other ways for the ships to be hit. Whether or not they will use the bullet
+ * class is up in the air.
  */
 
 public class Bullet {
@@ -28,10 +31,22 @@ public class Bullet {
         sprite.setScale(.2f, .2f);
     }
 
+    /*
+     * kill
+     * Currently, this only removes the current bullet from the bullet array in the game world.
+     * Later on, we can instead play an explosion animation if it hits a ship.
+     */
     public void kill() {
         world.bullets.removeValue(this, true);
     }
 
+    /*
+     * update
+     * This allows the bullet to know how to move itself given it's current velocity. Currently,
+     * it is adding a velocity of 500. Honestly, if the velocity is always going to be the same,
+     * we should probably move it into it's own variable so that it is easier to change in the
+     * future.
+     */
     public void update(float delta) {
         velocity.add(0, 500);
         velocity.scl(delta);

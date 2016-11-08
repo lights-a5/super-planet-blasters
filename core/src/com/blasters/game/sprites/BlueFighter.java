@@ -18,9 +18,8 @@ public class BlueFighter extends Fighter {
     public void defineFighter() {
         value = 2;
         health  = 4;
-        fighter = world.getAtlas().findRegion("playerShip3_ blue");
+        fighter = world.getAtlas().findRegion("playerShip3_blue");
         sprite = new Sprite(fighter);
-        sprite.setScale(.2f, .2f);
     }
 
     public void update(float delta) {

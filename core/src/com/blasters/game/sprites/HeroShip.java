@@ -3,13 +3,14 @@ package com.blasters.game.sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.blasters.game.gameworld.GameWorld;
-import com.blasters.game.screens.GameScreen;
 
 /**
- * Created by SHELIVES on 11/2/2016.
+ * HeroShip
+ * A class designed to be the ship that the main player uses. As such, it has a lot of different
+ * variables that other fighters don't have. The fighter, if hit, can also become invincible.
+ * Currently there is no visible representation of invincibility.
  */
 
 public class HeroShip extends Fighter {
@@ -41,7 +42,6 @@ public class HeroShip extends Fighter {
         timeInvincible = 0;
         isDead = false;
         sprite.setPosition(100, 100);
-        sprite.setScale(.2f, .2f);
     }
     public void changeColor() {
         switch (colorState) {

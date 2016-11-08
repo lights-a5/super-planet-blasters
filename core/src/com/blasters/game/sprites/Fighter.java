@@ -1,13 +1,12 @@
 package com.blasters.game.sprites;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.blasters.game.gameworld.GameWorld;
-import com.blasters.game.screens.GameScreen;
 
 /**
- * Created by SHELIVES on 11/2/2016.
+ * Fighter
+ * An abstract class that all fighters can follow including our hero ship and enemies.
  */
 
 public abstract class Fighter{
