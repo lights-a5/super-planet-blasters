@@ -10,13 +10,15 @@ import com.blasters.game.SuperPlanetBlasters;
 public class MenuScreen implements Screen{
     
     public SuperPlanetBlasters game;
-    private Texture playButton;
+    private Texture startButton;
     private Texture logo;
+    private Texture soundBtn;
     private Texture bg;
 
     public MenuScreen(SuperPlanetBlasters game) {
-        playButton = new Texture("StartButn.png");
+        startButton = new Texture("StartButn.png");
         logo = new Texture("SPB_logo.png");
+        soundBtn = new Texture("soundOn.png");
         bg = new Texture("menuBg.jpg");
         this.game = game;
 
@@ -36,8 +38,9 @@ public class MenuScreen implements Screen{
         //turn on or off sound
         game.sb.begin();
         game.sb.draw(bg, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.sb.draw(playButton, 100, 100, 100, 100);
-        game.sb.draw(logo, (Gdx.graphics.getWidth() / 2 - 200), Gdx.graphics.getHeight() / 2,400, 400);
+        game.sb.draw(startButton, (Gdx.graphics.getWidth() /2 - 140), (Gdx.graphics.getHeight() / 10), 280, 280);
+        game.sb.draw(soundBtn, (Gdx.graphics.getWidth() /2 - 300), (Gdx.graphics.getHeight() / 11), 105, 105);
+        game.sb.draw(logo, (Gdx.graphics.getWidth() / 2 - 250), (Gdx.graphics.getHeight() / 2 -100),500, 500);
         game.sb.end();
     }
 
