@@ -1,12 +1,8 @@
 package com.blasters.game.screens;
 
-/**
- * Created by Adam on 11/1/2016.
- */
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.OrthographicCamera;//
 import com.badlogic.gdx.graphics.Texture;
 import com.blasters.game.SuperPlanetBlasters;
 
