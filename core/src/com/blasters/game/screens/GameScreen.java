@@ -8,7 +8,8 @@ import com.blasters.game.gameworld.GameWorld;
 
 /**
  * The game screen class. This is the main screen where
- * the game will be played.
+ * the game will be played. It has a world that maintains the game state
+ * and the renderer that will render everything inside the world.
  */
 
 public class GameScreen implements Screen {
