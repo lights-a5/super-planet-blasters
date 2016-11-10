@@ -45,6 +45,7 @@ public class BlueFighter extends Fighter {
     }
 
     private void die() {
+        world.screen.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }
 }

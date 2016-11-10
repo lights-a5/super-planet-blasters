@@ -3,15 +3,12 @@ package com.blasters.game.sprites;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.blasters.game.gameworld.GameWorld;
-import com.blasters.game.screens.GameScreen;
 
 /**
- * Created by SHELIVES on 11/2/2016.
+ * The basic red fighter.
  */
 
 public class RedFighter extends Fighter {
-    TextureRegion fighter;
-
     public RedFighter(GameWorld world) {
         super(world);
     }
@@ -19,7 +16,7 @@ public class RedFighter extends Fighter {
     public void defineFighter() {
         value = 1;
         health  = 2;
-        fighter = world.getAtlas().findRegion("playerShip2_red");
+        TextureRegion fighter = world.getAtlas().findRegion("playerShip2_red");
         sprite = new Sprite(fighter);
         sprite.setScale(.5f, .5f);
     }
@@ -47,6 +44,7 @@ public class RedFighter extends Fighter {
     }
 
     private void die() {
+        world.screen.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }
 }

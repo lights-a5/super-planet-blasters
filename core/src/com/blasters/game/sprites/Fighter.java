@@ -11,12 +11,12 @@ import com.blasters.game.gameworld.GameWorld;
 
 public abstract class Fighter{
     public int value;
-    public Vector2 velocity;
-    protected GameWorld world;
-    protected int health;
+    Vector2 velocity;
+    GameWorld world;
+    int health;
     public Sprite sprite;
     
-    public Fighter(GameWorld world) {
+    Fighter(GameWorld world) {
         this.world = world;
         velocity = new Vector2(0,0);
         defineFighter();

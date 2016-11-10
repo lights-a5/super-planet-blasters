@@ -20,11 +20,13 @@ public class SuperPlanetBlasters extends Game {
 	public static final int HEIGHT = 800;
 	public static final int WIDTH =  600;
 	public static final String TITLE = "Super Planet Blasters!";
+	public SpriteBatch sb;
 	//currently this just sets the game screen. When we have a menu screen, this will need to set
 	//that instead.
 	@Override
 	public void create () {
-		setScreen(new GameScreen());
+		sb = new SpriteBatch();
+		setScreen(new GameScreen(this));
 	}
 
 	@Override
@@ -34,6 +36,7 @@ public class SuperPlanetBlasters extends Game {
 	
 	@Override
 	public void dispose () {
+		sb.dispose();
 		super.dispose();
 	}
 }
