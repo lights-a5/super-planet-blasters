@@ -136,42 +136,42 @@ space_station
   orig: 371, 607
   offset: 10, 6
   index: -1
-spaceShips
+barracudaShip
   rotate: false
   xy: 115, 113
   size: 106, 80
   orig: 106, 80
   offset: 0, 0
   index: 1
-spaceShips
+stingrayShip
   rotate: false
   xy: 51, 12
   size: 101, 74
   orig: 101, 74
   offset: 0, 0
   index: 2
-spaceShips
+bansheeShip
   rotate: false
   xy: 113, 210
   size: 126, 108
   orig: 126, 108
   offset: 0, 0
   index: 4
-spaceShips
+scorpioShip
   rotate: false
   xy: 241, 210
   size: 172, 151
   orig: 172, 151
   offset: 0, 0
   index: 7
-spaceShips
+morcegoShip
   rotate: false
   xy: 223, 126
   size: 100, 82
   orig: 100, 82
   offset: 0, 0
   index: 8
-spaceShips
+dracoShip
   rotate: false
   xy: 325, 126
   size: 114, 82
