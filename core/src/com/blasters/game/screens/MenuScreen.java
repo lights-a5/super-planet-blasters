@@ -1,6 +1,7 @@
 package com.blasters.game.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;//
 import com.badlogic.gdx.graphics.Texture;
@@ -17,10 +18,15 @@ public class MenuScreen implements Screen{
     private Texture extras;
     private Texture bg;
 
+    
+
     private Sprite start;
     private Sprite sound;
 
     public MenuScreen(SuperPlanetBlasters game) {
+
+
+        OrthographicCamera camera = new OrthographicCamera();
         startButton = new Texture("StartButn.png");
         logo = new Texture("SPB_logo.png");
         soundBtn = new Texture("soundOn.png");
@@ -63,6 +69,7 @@ public class MenuScreen implements Screen{
 
     }
 
+
     @Override
     public void resize(int width, int height) {
 
@@ -70,14 +77,20 @@ public class MenuScreen implements Screen{
 
     }
 
+    public void handleInput(){
+        if(Gdx.input.justTouched()){
+            game.setScreen(new MenuScreen(game));
+        }
+    }
+
     @Override
     public void pause() {
-
+            Gdx.app.log("GameScreen", "pause called");
     }
 
     @Override
     public void resume() {
-
+        Gdx.app.log("GameScreen", "resume called");
     }
 
     @Override
