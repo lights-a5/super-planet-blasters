@@ -3,10 +3,15 @@ package com.blasters.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;//
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.blasters.game.SuperPlanetBlasters;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+
 
 
 public class MenuScreen implements Screen{
@@ -18,13 +23,17 @@ public class MenuScreen implements Screen{
     private Texture extras;
     private Texture bg;
 
-    
+    private Music menuMusic;
+    private Sound click;
+
+    private InputListener touch;
 
     private Sprite start;
     private Sprite sound;
 
     public MenuScreen(SuperPlanetBlasters game) {
 
+        menuMusic = Gdx.audio.newMusic(Gdx.files.internal("bolt.mp3"));
 
         OrthographicCamera camera = new OrthographicCamera();
         startButton = new Texture("StartButn.png");
@@ -52,10 +61,12 @@ public class MenuScreen implements Screen{
 
     @Override
     public void render(float delta) {
+        handleInput();
         //test if touched within coordinates of button
         //game.setScreen(new Screen(GameScreen(game, isSound));
         //test if touched within coordinates of volume button
         //turn on or off sound
+        menuMusic.play();
         game.sb.begin();
         game.sb.draw(bg, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         sound.draw(game.sb);
@@ -80,6 +91,7 @@ public class MenuScreen implements Screen{
     public void handleInput(){
         if(Gdx.input.justTouched()){
             game.setScreen(new MenuScreen(game));
+            menuMusic.pause();
         }
     }
 
