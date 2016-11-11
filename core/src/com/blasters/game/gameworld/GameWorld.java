@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.blasters.game.SuperPlanetBlasters;
+import com.blasters.game.screens.GameScreen;
 import com.blasters.game.sprites.BlueFighter;
 import com.blasters.game.sprites.Bullet;
 import com.blasters.game.sprites.Fighter;
@@ -31,12 +33,14 @@ public class GameWorld {
     private int level; //what level we are on
     public Array<Fighter> enemies; //An array that holds all the enemies on the screen
     public Array<Bullet> bullets; //Holds all bullets fired by the main ship
-    public Texture bg; //background texture
-    public int srcy; //NOT SURE WHAT THIS IS FOR. EXPLAIN PLZ TYLER?
-    public static final float BULLETDELAY = .2f; //Delay between bullets. Increase for more bullets.
+    Texture bg; //background texture
+    int rateOfBackground; //NOT SURE WHAT THIS IS FOR. EXPLAIN PLZ TYLER?
+    private static final float BULLETDELAY = .2f; //Delay between bullets. Increase for more bullets.
     private float currentDelay;
+    public GameScreen screen;
 
-    public GameWorld() {
+    public GameWorld(GameScreen screen) {
+        this.screen = screen;
         atlas = new TextureAtlas("ships_and_bullets.pack");
         player = new HeroShip(this);
         enemies  = new DelayedRemovalArray<Fighter>();
@@ -47,7 +51,7 @@ public class GameWorld {
     }
 
     /* update
-     * libgdx will look for this function. Essentially, this will advance the game state everytime
+     * libgdx will look for this function. Essentially, this will advance the game state every time
      * it is used. This is how we move the game along.
      */
     public void update(float delta) {
@@ -75,8 +79,9 @@ public class GameWorld {
              * BUG!
              * Not sure why the bullet spawns not in front of the ship.
              */
-            Bullet temp = new Bullet(this, player.sprite.getX() - player.sprite.getRegionWidth() / 4,
-                    player.sprite.getY() - player.sprite.getRegionHeight() / 2);
+
+            Bullet temp = new Bullet(this, player.sprite.getX() + (player.sprite.getWidth() / 2 - 123),
+                    player.sprite.getY() + player.sprite.getHeight() - 350);
             bullets.add(temp);
             currentDelay = 0f;
         }
@@ -119,8 +124,8 @@ public class GameWorld {
         else {
             returnFighter = new RedFighter(this);
         }
-        float x = random.nextInt(Gdx.graphics.getWidth() - returnFighter.sprite.getRegionWidth());
-        float y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
+        float x = random.nextInt(SuperPlanetBlasters.WIDTH - returnFighter.sprite.getRegionWidth());
+        float y = random.nextInt(SuperPlanetBlasters.HEIGHT) + SuperPlanetBlasters.HEIGHT ;
         returnFighter.sprite.setPosition(x, y);
         return returnFighter;
     }
