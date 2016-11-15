@@ -8,5 +8,5 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 
 public abstract class Ship extends Sprite {
-
+//do we still need this class?
 }

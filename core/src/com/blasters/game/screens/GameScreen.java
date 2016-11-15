@@ -3,6 +3,7 @@ package com.blasters.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -25,15 +26,24 @@ public class GameScreen implements Screen {
     private GameWorld world;
     private GameRenderer renderer;
     public SuperPlanetBlasters game;
+    public Music gameMusic;
     private Viewport gameViewPort;
     private OrthographicCamera cam;
     public Hud hud;
 
-    public GameScreen(SuperPlanetBlasters game) {
+    public GameScreen(SuperPlanetBlasters game, Boolean isMusicPlaying) {
         this.game = game;
         hud = new Hud(game.sb);
         world = new GameWorld(this);
         cam = new OrthographicCamera();
+
+        if(isMusicPlaying)
+        {
+            gameMusic = Gdx.audio.newMusic(Gdx.files.internal("GSLevel_1.mp3"));
+            gameMusic.setLooping(isMusicPlaying);
+            gameMusic.play();
+
+        }
         gameViewPort = new FitViewport(SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT, cam);
         gameViewPort.apply();
         cam.position.set(gameViewPort.getWorldWidth() / 2, gameViewPort.getWorldHeight() / 2, 0);
@@ -81,5 +91,7 @@ public class GameScreen implements Screen {
     public void dispose() {
         world.dispose();
         renderer.dispose();
+        gameMusic.dispose();
+
     }
 }

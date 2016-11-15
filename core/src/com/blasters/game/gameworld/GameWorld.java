@@ -38,6 +38,7 @@ public class GameWorld {
     private static final float BULLETDELAY = .2f; //Delay between bullets. Increase for more bullets.
     private float currentDelay;
     public GameScreen screen;
+    public Texture playerTexture;
 
     public GameWorld(GameScreen screen) {
         this.screen = screen;

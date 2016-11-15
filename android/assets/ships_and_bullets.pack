@@ -1,145 +1,187 @@
-
 ships_and_bullets.png
+size: 502, 1231
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
-paper_starfighterFire01
+Blaster_player1
   rotate: false
-  xy: 1, 325
-  size: 248, 680
-  orig: 248, 680
+  xy: 268, 363
+  size: 233, 245
+  orig: 273, 311
+  offset: 18, 30
+  index: -1
+Blaster_player1L
+  rotate: true
+  xy: 1, 363
+  size: 142, 265
+  orig: 273, 311
+  offset: 63, 7
+  index: -1
+Blaster_player1R
+  rotate: true
+  xy: 1, 507
+  size: 142, 265
+  orig: 273, 311
+  offset: 51, 7
+  index: -1
+laserBlue01
+  rotate: true
+  xy: 1, 1
+  size: 9, 54
+  orig: 9, 54
   offset: 0, 0
   index: -1
-paper_starfighterFire02
+laserBlue08
   rotate: false
-  xy: 251, 325
-  size: 248, 680
-  orig: 248, 680
+  xy: 339, 1
+  size: 48, 46
+  orig: 48, 46
   offset: 0, 0
   index: -1
-paper_starfighterFire03
+laserBlue09
   rotate: false
-  xy: 501, 325
-  size: 248, 680
-  orig: 248, 680
+  xy: 389, 1
+  size: 48, 46
+  orig: 48, 46
   offset: 0, 0
   index: -1
-paper_starfighterFire04
+laserBlue13
+  rotate: true
+  xy: 57, 1
+  size: 9, 57
+  orig: 9, 57
+  offset: 0, 0
+  index: -1
+laserRed01
+  rotate: true
+  xy: 116, 1
+  size: 9, 54
+  orig: 9, 54
+  offset: 0, 0
+  index: -1
+laserRed08
   rotate: false
-  xy: 751, 325
-  size: 248, 680
-  orig: 248, 680
+  xy: 439, 1
+  size: 48, 46
+  orig: 48, 46
+  offset: 0, 0
+  index: -1
+laserRed09
+  rotate: false
+  xy: 1, 12
+  size: 48, 46
+  orig: 48, 46
+  offset: 0, 0
+  index: -1
+laserRed13
+  rotate: true
+  xy: 172, 1
+  size: 9, 57
+  orig: 9, 57
   offset: 0, 0
   index: -1
 playerShip2_blue
   rotate: false
-  xy: 1, 248
+  xy: 154, 36
   size: 112, 75
   orig: 112, 75
   offset: 0, 0
   index: -1
 playerShip2_green
   rotate: false
-  xy: 1, 171
+  xy: 268, 49
   size: 112, 75
   orig: 112, 75
   offset: 0, 0
   index: -1
 playerShip2_orange
   rotate: false
-  xy: 115, 248
+  xy: 382, 49
   size: 112, 75
   orig: 112, 75
   offset: 0, 0
   index: -1
 playerShip2_red
   rotate: false
-  xy: 1, 94
+  xy: 1, 88
   size: 112, 75
   orig: 112, 75
   offset: 0, 0
   index: -1
-ufoBlue
+powerupBlue_shield
   rotate: false
-  xy: 115, 155
-  size: 91, 91
-  orig: 91, 91
+  xy: 231, 1
+  size: 34, 33
+  orig: 34, 33
   offset: 0, 0
   index: -1
-ufoGreen
+powerupRed_star
   rotate: false
-  xy: 1, 1
-  size: 91, 91
-  orig: 91, 91
+  xy: 267, 1
+  size: 34, 33
+  orig: 34, 33
   offset: 0, 0
   index: -1
-playerShip1_blue
+powerupYellow_bolt
   rotate: false
-  xy: 229, 248
-  size: 99, 75
-  orig: 99, 75
+  xy: 303, 1
+  size: 34, 33
+  orig: 34, 33
   offset: 0, 0
   index: -1
-ufoRed
+space_station
   rotate: false
-  xy: 208, 155
-  size: 91, 91
-  orig: 91, 91
-  offset: 0, 0
+  xy: 1, 651
+  size: 346, 579
+  orig: 371, 607
+  offset: 10, 6
   index: -1
-playerShip1_green
+barracudaShip
   rotate: false
-  xy: 330, 248
-  size: 99, 75
-  orig: 99, 75
+  xy: 115, 113
+  size: 106, 80
+  orig: 106, 80
   offset: 0, 0
-  index: -1
-ufoYellow
+  index: 1
+stingrayShip
   rotate: false
-  xy: 301, 155
-  size: 91, 91
-  orig: 91, 91
+  xy: 51, 12
+  size: 101, 74
+  orig: 101, 74
   offset: 0, 0
-  index: -1
-playerShip1_orange
+  index: 2
+bansheeShip
   rotate: false
-  xy: 431, 248
-  size: 99, 75
-  orig: 99, 75
+  xy: 113, 210
+  size: 126, 108
+  orig: 126, 108
   offset: 0, 0
-  index: -1
-playerShip1_red
+  index: 4
+scorpioShip
   rotate: false
-  xy: 394, 171
-  size: 99, 75
-  orig: 99, 75
+  xy: 241, 210
+  size: 172, 151
+  orig: 172, 151
   offset: 0, 0
-  index: -1
-playerShip3_blue
+  index: 7
+morcegoShip
   rotate: false
-  xy: 532, 248
-  size: 98, 75
-  orig: 98, 75
+  xy: 223, 126
+  size: 100, 82
+  orig: 100, 82
   offset: 0, 0
-  index: -1
-playerShip3_green
+  index: 8
+dracoShip
   rotate: false
-  xy: 495, 171
-  size: 98, 75
-  orig: 98, 75
+  xy: 325, 126
+  size: 114, 82
+  orig: 114, 82
   offset: 0, 0
-  index: -1
-playerShip3_orange
+  index: 9
+stationGUN
   rotate: false
-  xy: 632, 248
-  size: 98, 75
-  orig: 98, 75
-  offset: 0, 0
-  index: -1
-playerShip3_red
-  rotate: false
-  xy: 595, 171
-  size: 98, 75
-  orig: 98, 75
-  offset: 0, 0
+  xy: 1, 165
+  size: 110, 115
+  orig: 125, 125
+  offset: 10, 4
   index: -1

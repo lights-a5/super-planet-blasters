@@ -16,7 +16,7 @@ public class RedFighter extends Fighter {
     public void defineFighter() {
         value = 1;
         health  = 2;
-        TextureRegion fighter = world.getAtlas().findRegion("playerShip2_red");
+        TextureRegion fighter = world.getAtlas().findRegion("barracudaShip"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
         sprite.setScale(.5f, .5f);
     }

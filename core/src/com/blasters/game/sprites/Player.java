@@ -6,7 +6,7 @@ import com.blasters.game.gameworld.GameWorld;
 
 /**
  * Created by Tamara on 11/1/2016.
- */
+ thanks Tamara!*/
 
 public class Player extends Ship {
     public enum State {IDLE, LEFT, RIGHT}
