@@ -110,12 +110,12 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
     @Override
     public void pause() {
-        Gdx.app.log("GameScreen", "pause called");
+        Gdx.app.log("MenuScreen", "pause called");
     }
 
     @Override
     public void resume() {
-        Gdx.app.log("GameScreen", "resume called");
+        Gdx.app.log("MenuScreen", "resume called");
     }
 
     @Override
@@ -156,6 +156,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
         if (start.getBoundingRectangle().contains(screenX, screenY)) {
             game.setScreen(new GameScreen(game,playing));
+            Gdx.app.log("MenuScreen", "start Pressed");
         }
         if (sound.getBoundingRectangle().contains(screenX, screenY)) {
             if (playing) {
