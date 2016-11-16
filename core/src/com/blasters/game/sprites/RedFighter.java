@@ -22,9 +22,7 @@ public class RedFighter extends Fighter {
     }
 
     public void update(float delta) {
-        velocity.add(0, -500);
-        velocity.scl(delta);
-        sprite.translate(velocity.x, velocity.y);
+        move(delta);
 
         if (sprite.getY() + sprite.getHeight() < 0) {
             world.enemies.removeValue(this, true);
@@ -46,5 +44,11 @@ public class RedFighter extends Fighter {
     private void die() {
         world.screen.hud.addScore(value);
         world.enemies.removeValue(this, true);
+    }
+
+    public void move(float delta){
+        velocity.add(0, -500);
+        velocity.scl(delta);
+        sprite.translate(velocity.x, velocity.y);
     }
 }

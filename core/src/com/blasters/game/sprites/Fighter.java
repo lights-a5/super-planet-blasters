@@ -24,4 +24,5 @@ public abstract class Fighter{
 
     protected abstract void defineFighter();
     public abstract void update(float delta);
+    public abstract void move(float delta);
 }

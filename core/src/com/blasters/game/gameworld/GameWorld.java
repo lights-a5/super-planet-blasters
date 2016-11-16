@@ -34,14 +34,14 @@ public class GameWorld {
     public Array<Fighter> enemies; //An array that holds all the enemies on the screen
     public Array<Bullet> bullets; //Holds all bullets fired by the main ship
     Texture bg; //background texture
-    int rateOfBackground; //NOT SURE WHAT THIS IS FOR. EXPLAIN PLZ TYLER?
+    int rateOfBackground; //Speed background moves
     private static final float BULLETDELAY = .2f; //Delay between bullets. Increase for more bullets.
     private float currentDelay;
     public GameScreen screen;
 
     public GameWorld(GameScreen screen) {
         this.screen = screen;
-        atlas = new TextureAtlas("ships_and_bullets.pack");
+        atlas = new TextureAtlas(Gdx.files.internal("ships_and_bullets.pack"));
         player = new HeroShip(this);
         enemies  = new DelayedRemovalArray<Fighter>();
         bullets = new DelayedRemovalArray<Bullet>();

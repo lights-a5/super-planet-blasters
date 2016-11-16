@@ -105,4 +105,8 @@ public class HeroShip extends Fighter {
     public boolean isDead() {
         return isDead;
     }
+
+    public void move(float delta){
+
+    }
 }
