@@ -3,6 +3,7 @@ package com.blasters.game;
 
 import com.badlogic.gdx.Game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,12 +23,12 @@ public class SuperPlanetBlasters extends Game {
 	public static final int WIDTH =  600;
 	public static final String TITLE = "Super Planet Blasters!";
 	public SpriteBatch sb;
-	//currently this just sets the game screen. When we have a menu screen, this will need to set
-	//that instead.
+	//currently this just sets the menu screen
 	@Override
 	public void create () {
 		sb = new SpriteBatch();
 		setScreen(new MenuScreen(this));
+		Gdx.app.log("SPB", "Created");
 	}
 
 	@Override

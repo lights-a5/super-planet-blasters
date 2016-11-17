@@ -8,6 +8,8 @@ package com.blasters.game.screens;
         import com.badlogic.gdx.Input;
         import com.badlogic.gdx.InputProcessor;
         import com.badlogic.gdx.Screen;
+        import com.badlogic.gdx.graphics.g2d.Animation;
+        import com.badlogic.gdx.utils.viewport.FitViewport;
         import com.blasters.game.screens.GameScreen;
         import com.badlogic.gdx.audio.Music;
         import com.badlogic.gdx.audio.Sound;
@@ -18,6 +20,8 @@ package com.blasters.game.screens;
         import com.blasters.game.SuperPlanetBlasters;
         import com.badlogic.gdx.scenes.scene2d.InputListener;
 
+        import static com.blasters.game.SuperPlanetBlasters.HEIGHT;
+        import static com.blasters.game.SuperPlanetBlasters.WIDTH;
 
 
 public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
@@ -33,7 +37,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     private Sound click; //no click sound yet
     private boolean playing;
 
-    private InputListener input;
+    public static Animation explode;
 
     private Sprite start;
     private Sprite sound;
@@ -42,7 +46,8 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
         menuMusic = Gdx.audio.newMusic(Gdx.files.internal("bolt.mp3"));
 
-        OrthographicCamera camera = new OrthographicCamera();
+
+
         startButton = new Texture("StartButn.png");
         logo = new Texture("SPB_logo.png");
         soundBtn = new Texture("soundOn.png");
@@ -147,18 +152,14 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
+        int adjustY = Gdx.graphics.getHeight();
 
-        return true;
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-
-        if (start.getBoundingRectangle().contains(screenX, screenY)) {
+        if (start.getBoundingRectangle().contains(screenX,(adjustY - screenY))) {
             game.setScreen(new GameScreen(game,playing));
+            menuMusic.dispose();
             Gdx.app.log("MenuScreen", "start Pressed");
         }
-        if (sound.getBoundingRectangle().contains(screenX, screenY)) {
+        if (sound.getBoundingRectangle().contains(screenX,(adjustY - screenY))) {
             if (playing) {
                 menuMusic.pause();
                 playing = false;
@@ -167,6 +168,14 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
                 playing = true;
             }
         }
+
+        return true;
+    }
+
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+
         return true;
     }
 

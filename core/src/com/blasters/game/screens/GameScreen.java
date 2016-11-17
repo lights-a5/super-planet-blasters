@@ -30,6 +30,7 @@ public class GameScreen implements Screen {
     private Viewport gameViewPort;
     private OrthographicCamera cam;
     public Hud hud;
+    private float runTime; //do we need this?
 
     public GameScreen(SuperPlanetBlasters game, Boolean isMusicPlaying) {
         this.game = game;
@@ -37,18 +38,21 @@ public class GameScreen implements Screen {
         world = new GameWorld(this);
         cam = new OrthographicCamera();
 
-        if(isMusicPlaying)
-        {
-            gameMusic = Gdx.audio.newMusic(Gdx.files.internal("GSLevel_1.mp3"));
-            gameMusic.setLooping(isMusicPlaying);
-            gameMusic.play();
+        playGameMusic(isMusicPlaying);
 
-        }
         gameViewPort = new FitViewport(SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT, cam);
         gameViewPort.apply();
         cam.position.set(gameViewPort.getWorldWidth() / 2, gameViewPort.getWorldHeight() / 2, 0);
         renderer = new GameRenderer(world, this);
         cam.update();
+    }
+
+    private void playGameMusic(Boolean isMusicPlaying) {
+        if(isMusicPlaying) {
+            gameMusic = Gdx.audio.newMusic(Gdx.files.internal("GSLevel_1.mp3"));
+            gameMusic.setLooping(isMusicPlaying);
+            gameMusic.play();
+        }
     }
 
     @Override
@@ -62,8 +66,9 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.sb.setProjectionMatrix(cam.combined); //only draw what the camera can see
-        renderer.render();
+        renderer.render(); //put the runtime as a parameter? eg. renderer.render(runtime);
         hud.draw();
+
 
     }
 
