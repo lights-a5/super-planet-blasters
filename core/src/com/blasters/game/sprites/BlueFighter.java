@@ -20,7 +20,7 @@ public class BlueFighter extends Fighter {
     public void defineFighter() {
         value = 2;
         health  = 4;
-        fighter = world.getAtlas().findRegion("playerShip3_blue");
+        fighter = world.getAtlas().findRegion("stingrayShip");
         sprite = new Sprite(fighter);
         sprite.setRotation(315);
         change = true;

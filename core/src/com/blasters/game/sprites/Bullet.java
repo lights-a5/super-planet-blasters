@@ -23,7 +23,7 @@ public class Bullet {
     public Bullet(GameWorld world, float x, float y) {
         this.world = world;
         velocity = new Vector2(0, 0);
-        TextureRegion bullet = world.getAtlas().findRegion("paper_starfighterFire01");
+        TextureRegion bullet = world.getAtlas().findRegion("laserBlue01");
         sprite = new Sprite(bullet);
         sprite.setScale(.2f, .2f);
         sprite.setPosition(x, y);
