@@ -38,6 +38,12 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     private Sprite start;
     private Sprite sound;
 
+    int inX;
+    int inY;
+
+    String message;
+    boolean clicked;
+
     public MenuScreen (SuperPlanetBlasters game) {
 
         menuMusic = Gdx.audio.newMusic(Gdx.files.internal("bolt.mp3"));
@@ -61,6 +67,8 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         menuMusic.play();
         playing = true;
 
+        Gdx.input.setInputProcessor(this);
+        clicked = false;
 
     }
 
@@ -146,18 +154,19 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        inX = screenX;
+        inY = screenY;
 
-
-        return true;
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-
-        if (start.getBoundingRectangle().contains(screenX, screenY)) {
-            game.setScreen(new GameScreen(game,playing));
+        if(sound.getBoundingRectangle().contains(screenX, screenY)){
+            clicked = true;
         }
-        if (sound.getBoundingRectangle().contains(screenX, screenY)) {
+
+        message = "Clicked at " + screenX + ", " + screenY;
+        System.out.println(message);
+        System.out.println("Button is " + clicked);
+        System.out.println("Rectangle coordinates " + sound.getBoundingRectangle().getX() + ", " +  sound.getBoundingRectangle().getY());
+
+        if (sound.getBoundingRectangle().contains(inX, inY)) {
             if (playing) {
                 menuMusic.pause();
                 playing = false;
@@ -166,6 +175,17 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
                 playing = true;
             }
         }
+
+        if (start.getBoundingRectangle().contains(inX, inY)) {
+            game.setScreen(new GameScreen(game,playing));
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+
         return true;
     }
 
@@ -183,4 +203,6 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     public boolean scrolled(int amount) {
         return false;
     }
+
+
 }
