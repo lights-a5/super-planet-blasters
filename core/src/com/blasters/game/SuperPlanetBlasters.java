@@ -3,10 +3,13 @@ package com.blasters.game;
 
 import com.badlogic.gdx.Game;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.blasters.game.screens.GameScreen;
+import com.blasters.game.screens.LoadingScreen;
 import com.blasters.game.screens.MenuScreen;
 
 /*
@@ -22,12 +25,24 @@ public class SuperPlanetBlasters extends Game {
 	public static final int WIDTH =  600;
 	public static final String TITLE = "Super Planet Blasters!";
 	public SpriteBatch sb;
-	//currently this just sets the game screen. When we have a menu screen, this will need to set
-	//that instead.
+	public Screen gameScreen;
+	public Screen menuScreen;
+	public Screen loadingScreen;
+	public boolean playMusic;
+	public OrthographicCamera camera;
+	public AssetManager assetManager;
+
 	@Override
 	public void create () {
+		assetManager = new AssetManager();
 		sb = new SpriteBatch();
-		setScreen(new MenuScreen(this));
+		playMusic = true;
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, WIDTH, HEIGHT);
+		loadingScreen = new LoadingScreen(this);
+		menuScreen = new MenuScreen(this);
+		gameScreen = new GameScreen(this);
+		setScreen(loadingScreen);
 	}
 
 	@Override
@@ -38,6 +53,9 @@ public class SuperPlanetBlasters extends Game {
 	@Override
 	public void dispose () {
 		sb.dispose();
-		super.dispose();
+		loadingScreen.dispose();
+		gameScreen.dispose();
+		menuScreen.dispose();
+		assetManager.dispose();
 	}
 }
