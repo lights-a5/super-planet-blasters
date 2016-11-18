@@ -27,36 +27,25 @@ public class GameScreen implements Screen {
     private GameRenderer renderer;
     public SuperPlanetBlasters game;
     public Music gameMusic;
-    private Viewport gameViewPort;
-    private OrthographicCamera cam;
     public Hud hud;
-    private float runTime; //do we need this?
 
-    public GameScreen(SuperPlanetBlasters game, Boolean isMusicPlaying) {
+    public GameScreen(SuperPlanetBlasters game) {
+        Viewport gameViewPort = new FitViewport(SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT, game.camera);
+        gameViewPort.apply();
         this.game = game;
         hud = new Hud(game.sb);
         world = new GameWorld(this);
-        cam = new OrthographicCamera();
 
-        playGameMusic(isMusicPlaying);
-
-        gameViewPort = new FitViewport(SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT, cam);
-        gameViewPort.apply();
-        cam.position.set(gameViewPort.getWorldWidth() / 2, gameViewPort.getWorldHeight() / 2, 0);
-        renderer = new GameRenderer(world, this);
-        cam.update();
-    }
-
-    private void playGameMusic(Boolean isMusicPlaying) {
-        if(isMusicPlaying) {
-            gameMusic = Gdx.audio.newMusic(Gdx.files.internal("GSLevel_1.mp3"));
-            gameMusic.setLooping(isMusicPlaying);
-            gameMusic.play();
-        }
     }
 
     @Override
     public void show() {
+        renderer = new GameRenderer(world, this);
+        gameMusic = game.assetManager.get("GSLevel_1.mp3", Music.class);
+        if(game.playMusic) {
+            gameMusic.setLooping(true);
+            gameMusic.play();
+        }
 
     }
 
@@ -65,10 +54,9 @@ public class GameScreen implements Screen {
         world.update(delta);
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        game.sb.setProjectionMatrix(cam.combined); //only draw what the camera can see
-        renderer.render(); //put the runtime as a parameter? eg. renderer.render(runtime);
+        game.sb.setProjectionMatrix(game.camera.combined); //only draw what the camera can see
+        renderer.render();
         hud.draw();
-
 
     }
 
@@ -94,6 +82,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+        hud.dispose();
         world.dispose();
         renderer.dispose();
         gameMusic.dispose();
