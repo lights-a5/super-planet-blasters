@@ -22,8 +22,8 @@ import com.blasters.game.screens.MenuScreen;
  * Height all the time. That would give us much cleaner code.
  */
 public class SuperPlanetBlasters extends Game {
-    public static final int HEIGHT = 800;
-    public static final int WIDTH =  600;
+   // public static final int HEIGHT = 800; I took these out in favor of Gdx.graphics.getHeight()
+   // public static final int WIDTH =  600; that way no matter what size screen it should fit.
     public static final String TITLE = "Super Planet Blasters!";
     public SpriteBatch sb;
     public Screen gameScreen;

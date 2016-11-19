@@ -41,7 +41,7 @@ public class LoadingScreen implements Screen {
 
     private void queueAssets() {
         game.assetManager.load("bolt.mp3", Music.class);
-        game.assetManager.load("GSLevel_1.mp3", Music.class);
+        game.assetManager.load("MOI.mp3", Music.class);
         game.assetManager.load("ships_and_bullets.pack", TextureAtlas.class);
         game.assetManager.load("menuBg.jpg", Texture.class);
         game.assetManager.load("StartButn.png", Texture.class);
@@ -53,7 +53,7 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+        Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         update(delta);

@@ -1,6 +1,7 @@
 package com.blasters.game.sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -26,16 +27,25 @@ public class Bullet {
         TextureRegion bullet = world.getAtlas().findRegion("laserBlue01");
         laserSprite = new Sprite(bullet);
         laserSprite.rotate90(true);
-        laserSprite.setScale(.01f,.9f);
+        laserSprite.setScale(.01f,.8f);
         laserSprite.setPosition(x, y);
     }
 
+
     /*
      * kill
-     * Currently, this only removes the current bullet from the bullet array in the game world.
-     * Later on, we can instead play an explosion animation if it hits a ship.
+     * Currently, this only removes the current bullet because it is a
+     * sprite I don't know how to make it
      */
-    void kill() {
+    void kill()
+    {
+        TextureRegion hit1 = world.getAtlas().findRegion("laserBlueHit1");
+        TextureRegion hit2 = world.getAtlas().findRegion("laserBlueHit2");
+        TextureRegion[] bulletHit = { hit1, hit2};
+
+        Animation hitAnimation = new Animation(0.01f, bulletHit);
+        hitAnimation.setPlayMode(Animation.PlayMode.NORMAL);
+
         world.bullets.removeValue(this, true);
     }
 

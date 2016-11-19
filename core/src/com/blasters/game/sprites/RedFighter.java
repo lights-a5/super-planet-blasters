@@ -16,7 +16,7 @@ public class RedFighter extends Fighter {
     public void defineFighter() {
         value = 1;
         health  = 2;
-        TextureRegion fighter = world.getAtlas().findRegion("barracudaShip"); //updated to reflect new atlas
+        TextureRegion fighter = world.getAtlas().findRegion("dracoShip"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
         sprite.setScale(.5f, .5f);
     }
@@ -35,6 +35,7 @@ public class RedFighter extends Fighter {
         for (Bullet bullet : world.bullets) {
             if (sprite.getBoundingRectangle().overlaps(bullet.laserSprite.getBoundingRectangle())) {
                 health--;
+                //bullet
                 bullet.kill();
                 if(health <= 0) {
                     die();

@@ -76,13 +76,8 @@ public class GameWorld {
             spawnEnemies();                         //spawn enemies
         }
         if(currentDelay >= BULLETDELAY) {
-            /*
-             * BUG!
-             * Not sure why the bullet spawns not in front of the ship.
-             */
 
-            Bullet temp = new Bullet(this, player.sprite.getX() + (player.sprite.getWidth()/2),
-                    player.sprite.getY() + player.sprite.getHeight());
+            Bullet temp = new Bullet(this, player.sprite.getX(), player.sprite.getY());
             bullets.add(temp);
             currentDelay = 0f;
         }
@@ -125,8 +120,8 @@ public class GameWorld {
         else {
             returnFighter = new RedFighter(this);
         }
-        float x = random.nextInt(SuperPlanetBlasters.WIDTH - returnFighter.sprite.getRegionWidth());
-        float y = random.nextInt(SuperPlanetBlasters.HEIGHT) + SuperPlanetBlasters.HEIGHT ;
+        float x = random.nextInt(Gdx.graphics.getWidth() - returnFighter.sprite.getRegionWidth());
+        float y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
         returnFighter.sprite.setPosition(x, y);
         return returnFighter;
     }

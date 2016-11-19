@@ -41,7 +41,7 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         renderer = new GameRenderer(world, this);
-        gameMusic = game.assetManager.get("GSLevel_1.mp3", Music.class);
+        gameMusic = game.assetManager.get("MOI.mp3", Music.class);
         if(game.playMusic) {
             gameMusic.setLooping(true);
             gameMusic.play();

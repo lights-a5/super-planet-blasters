@@ -42,6 +42,7 @@ public class HeroShip extends Fighter {
         timeInvincible = 0;
         isDead = false;
         sprite.setPosition(100, 100);
+        sprite.setScale(.3f,.3f);
     }
     public void changeColor() {
         switch (colorState) {

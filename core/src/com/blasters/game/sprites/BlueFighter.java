@@ -10,7 +10,7 @@ import com.blasters.game.gameworld.GameWorld;
  */
 
 public class BlueFighter extends Fighter {
-    TextureRegion fighter;
+    private TextureRegion fighter;
 
     public BlueFighter(GameWorld world) {
         super(world);
@@ -19,7 +19,7 @@ public class BlueFighter extends Fighter {
     public void defineFighter() {
         value = 2;
         health  = 4;
-        fighter = world.getAtlas().findRegion("stingrayShip");
+        fighter = world.getAtlas().findRegion("bansheeShip");
         sprite = new Sprite(fighter);
     }
 

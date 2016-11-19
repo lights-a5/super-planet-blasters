@@ -45,17 +45,17 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         }
         start = new Sprite(game.assetManager.get("StartButn.png", Texture.class));
         start.setScale(.3f, .3f);
-        start.setPosition((SuperPlanetBlasters.WIDTH / 2 - start.getWidth() / 2),
-                (SuperPlanetBlasters.HEIGHT / 5 - start.getHeight() /2));
+        start.setPosition((Gdx.graphics.getWidth() / 2 - start.getWidth() / 2),
+                (Gdx.graphics.getHeight() / 5 - start.getHeight() /2));
 
         sound = new Sprite(game.assetManager.get("soundOn.png", Texture.class));
         sound.setScale(.5f, .5f);
-        sound.setPosition( (SuperPlanetBlasters.WIDTH - sound.getWidth() ),
-                (SuperPlanetBlasters.HEIGHT / 5 - sound.getWidth() ));
+        sound.setPosition( (Gdx.graphics.getWidth() - sound.getWidth() ),
+                (Gdx.graphics.getHeight() / 5 - sound.getWidth() ));
 
         bg = game.assetManager.get("menuBg.jpg", Texture.class);
         logo = game.assetManager.get("SPB_logo.png", Texture.class);
-        // I'm imagining this will be turned into a sprite later
+        // This will be turned into a sprite later as stretch goals
         extras = game.assetManager.get("paper_planet1.png", Texture.class);
         Gdx.app.log("MenuScreen", "Show Called");
 
@@ -147,11 +147,11 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
-        if (start.getBoundingRectangle().contains(screenX, (SuperPlanetBlasters.HEIGHT - screenY))) {
+        if (start.getBoundingRectangle().contains(screenX, (Gdx.graphics.getHeight() - screenY))) {
             menuMusic.pause();
             game.setScreen(game.gameScreen);
         }
-        if (sound.getBoundingRectangle().contains(screenX, (SuperPlanetBlasters.HEIGHT - screenY))) {
+        if (sound.getBoundingRectangle().contains(screenX, (Gdx.graphics.getHeight() - screenY))) {
             if (game.playMusic) {
                 menuMusic.pause();
                 game.playMusic = false;
