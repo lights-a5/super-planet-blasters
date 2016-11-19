@@ -23,11 +23,11 @@ public class Bullet {
 
     public Bullet(GameWorld world, float x, float y) {
         this.world = world;
-        velocity = new Vector2(0, 0);
+        velocity = new Vector2(0, 2);
         TextureRegion bullet = world.getAtlas().findRegion("laserBlue01");
         laserSprite = new Sprite(bullet);
         laserSprite.rotate90(true);
-        laserSprite.setScale(.01f,.8f);
+        laserSprite.setScale(.02f,.8f);
         laserSprite.setPosition(x, y);
     }
 
@@ -35,7 +35,7 @@ public class Bullet {
     /*
      * kill
      * Currently, this only removes the current bullet because it is a
-     * sprite I don't know how to make it
+     * sprite I don't know how to make it animate like a texture can...
      */
     void kill()
     {

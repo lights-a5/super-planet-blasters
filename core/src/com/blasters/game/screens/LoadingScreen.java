@@ -49,6 +49,7 @@ public class LoadingScreen implements Screen {
         game.assetManager.load("soundOn.png", Texture.class);
         game.assetManager.load("soundOff.png", Texture.class);
         game.assetManager.load("paper_planet1.png", Texture.class);
+
     }
 
     @Override

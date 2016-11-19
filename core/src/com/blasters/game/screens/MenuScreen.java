@@ -30,6 +30,8 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     private InputListener input;
 
     private Sprite start;
+    private Sprite soundOn;
+    private Sprite soundOff;
     private Sprite sound;
 
     public MenuScreen (SuperPlanetBlasters game) {
@@ -49,9 +51,8 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
                 (Gdx.graphics.getHeight() / 5 - start.getHeight() /2));
 
         sound = new Sprite(game.assetManager.get("soundOn.png", Texture.class));
-        sound.setScale(.5f, .5f);
-        sound.setPosition( (Gdx.graphics.getWidth() - sound.getWidth() ),
-                (Gdx.graphics.getHeight() / 5 - sound.getWidth() ));
+        soundOff = new Sprite(game.assetManager.get("soundOff.png", Texture.class));
+        soundOn = new Sprite(game.assetManager.get("soundOn.png", Texture.class));
 
         bg = game.assetManager.get("menuBg.jpg", Texture.class);
         logo = game.assetManager.get("SPB_logo.png", Texture.class);
@@ -64,12 +65,12 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
     @Override
     public void render(float delta) {
-        //test if touched within coordinates of button
-        //game.setScreen(new Screen(GameScreen(game, isSound));
-        //test if touched within coordinates of volume button
-        //turn on or off sound
+
         game.sb.begin();
         game.sb.draw(bg, 0, 0, Gdx.graphics.getWidth(), (Gdx.graphics.getHeight()));
+        sound.setScale(.5f, .5f);
+        sound.setPosition( (Gdx.graphics.getWidth() - sound.getWidth() ),
+                (Gdx.graphics.getHeight() / 5 - sound.getWidth() ));
         sound.draw(game.sb);
         start.draw(game.sb);
 
@@ -101,12 +102,12 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
     @Override
     public void pause() {
-        Gdx.app.log("MenuScreen", "pause called");
+        Gdx.app.log("MenuScreen", "Pause, Device in lock");
     }
 
     @Override
     public void resume() {
-        Gdx.app.log("MenuScreen", "resume called");
+        Gdx.app.log("MenuScreen", "Resume called");
     }
 
     @Override
@@ -139,8 +140,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
-
+        
         return true;
     }
 
@@ -154,8 +154,10 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         if (sound.getBoundingRectangle().contains(screenX, (Gdx.graphics.getHeight() - screenY))) {
             if (game.playMusic) {
                 menuMusic.pause();
+                sound.set(soundOff);
                 game.playMusic = false;
             } else {
+                sound.set(soundOn);
                 menuMusic.play();
                 game.playMusic = true;
             }

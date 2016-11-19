@@ -77,8 +77,10 @@ public class GameWorld {
         }
         if(currentDelay >= BULLETDELAY) {
 
-            Bullet temp = new Bullet(this, player.sprite.getX(), player.sprite.getY());
+            Bullet temp = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.29f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
             bullets.add(temp);
+            Bullet two = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.99f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
+            bullets.add(two);
             currentDelay = 0f;
         }
         else {
