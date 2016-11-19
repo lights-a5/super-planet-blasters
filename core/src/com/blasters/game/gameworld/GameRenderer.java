@@ -1,5 +1,6 @@
 package com.blasters.game.gameworld;
 
+import com.badlogic.gdx.Gdx;
 import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.screens.GameScreen;
 import com.blasters.game.sprites.Bullet;
@@ -43,7 +44,7 @@ public class GameRenderer {
      * draws the background texture that is bg in the world class.
      */
     private void drawBackground() {
-        game.sb.draw(myWorld.bg, 0, 0, 0, myWorld.rateOfBackground, SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT);
+        game.sb.draw(myWorld.bg, 0, 0, 0, myWorld.rateOfBackground, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         myWorld.rateOfBackground -= 5;
     }
 
@@ -63,7 +64,7 @@ public class GameRenderer {
      */
     private void drawBullets() {
         for (Bullet bullet : myWorld.bullets) {
-            bullet.sprite.draw(game.sb);
+            bullet.laserSprite.draw(game.sb);
         }
     }
 

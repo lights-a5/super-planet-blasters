@@ -17,16 +17,17 @@ import com.blasters.game.gameworld.GameWorld;
 public class Bullet {
     private GameWorld world;
     private Vector2 velocity;
-    public Sprite sprite;
+    public Sprite laserSprite;
 
 
     public Bullet(GameWorld world, float x, float y) {
         this.world = world;
         velocity = new Vector2(0, 0);
         TextureRegion bullet = world.getAtlas().findRegion("laserBlue01");
-        sprite = new Sprite(bullet);
-        sprite.setScale(.2f, .2f);
-        sprite.setPosition(x, y);
+        laserSprite = new Sprite(bullet);
+        laserSprite.rotate90(true);
+        laserSprite.setScale(.01f,.9f);
+        laserSprite.setPosition(x, y);
     }
 
     /*
@@ -48,10 +49,10 @@ public class Bullet {
     public void update(float delta) {
         velocity.add(0, 500);
         velocity.scl(delta);
-        sprite.translate(velocity.x, velocity.y);
-        if (sprite.getY() > Gdx.graphics.getHeight() + sprite.getRegionHeight()) {
+        laserSprite.translate(velocity.x, velocity.y);
+        if (laserSprite.getY() > Gdx.graphics.getHeight() + laserSprite.getRegionHeight()) {
             world.bullets.removeValue(this, true);
         }
-        System.out.println("Bullet: " + sprite.getX());
+        System.out.println("Bullet: " + laserSprite.getX());
     }
 }

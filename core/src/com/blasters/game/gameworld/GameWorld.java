@@ -35,7 +35,7 @@ public class GameWorld {
     public Array<Bullet> bullets; //Holds all bullets fired by the main ship
     Texture bg; //background texture
     int rateOfBackground; //NOT SURE WHAT THIS IS FOR. EXPLAIN PLZ TYLER?
-    private static final float BULLETDELAY = .2f; //Delay between bullets. Increase for more bullets.
+    private static final float BULLETDELAY = .15f; //Delay between bullets. Increase for more bullets.
     private float currentDelay;
     public GameScreen screen;
     public Texture playerTexture;
@@ -81,8 +81,8 @@ public class GameWorld {
              * Not sure why the bullet spawns not in front of the ship.
              */
 
-            Bullet temp = new Bullet(this, player.sprite.getX() + (player.sprite.getWidth() / 2 - 123),
-                    player.sprite.getY() + player.sprite.getHeight() - 350);
+            Bullet temp = new Bullet(this, player.sprite.getX() + (player.sprite.getWidth()/2),
+                    player.sprite.getY() + player.sprite.getHeight());
             bullets.add(temp);
             currentDelay = 0f;
         }

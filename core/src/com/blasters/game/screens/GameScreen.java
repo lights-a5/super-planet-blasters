@@ -30,7 +30,7 @@ public class GameScreen implements Screen {
     public Hud hud;
 
     public GameScreen(SuperPlanetBlasters game) {
-        Viewport gameViewPort = new FitViewport(SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT, game.camera);
+        Viewport gameViewPort = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), game.camera);
         gameViewPort.apply();
         this.game = game;
         hud = new Hud(game.sb);

@@ -35,7 +35,7 @@ public class BlueFighter extends Fighter {
             die();
         }
         for (Bullet bullet : world.bullets) {
-            if (sprite.getBoundingRectangle().overlaps(bullet.sprite.getBoundingRectangle())) {
+            if (sprite.getBoundingRectangle().overlaps(bullet.laserSprite.getBoundingRectangle())) {
                 health--;
                 bullet.kill();
                 if(health <= 0) {

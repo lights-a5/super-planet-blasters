@@ -3,6 +3,7 @@ package com.blasters.game;
 
 import com.badlogic.gdx.Game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -38,7 +39,7 @@ public class SuperPlanetBlasters extends Game {
         sb = new SpriteBatch();
         playMusic = true;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, WIDTH, HEIGHT);
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         loadingScreen = new LoadingScreen(this);
         menuScreen = new MenuScreen(this);
         gameScreen = new GameScreen(this);

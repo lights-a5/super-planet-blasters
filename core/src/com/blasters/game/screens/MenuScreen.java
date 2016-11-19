@@ -48,7 +48,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         start.setPosition((SuperPlanetBlasters.WIDTH / 2 - start.getWidth() / 2),
                 (SuperPlanetBlasters.HEIGHT / 5 - start.getHeight() /2));
 
-        sound = new Sprite(game.assetManager.get("StartButn.png", Texture.class));
+        sound = new Sprite(game.assetManager.get("soundOn.png", Texture.class));
         sound.setScale(.5f, .5f);
         sound.setPosition( (SuperPlanetBlasters.WIDTH - sound.getWidth() ),
                 (SuperPlanetBlasters.HEIGHT / 5 - sound.getWidth() ));
@@ -69,12 +69,11 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         //test if touched within coordinates of volume button
         //turn on or off sound
         game.sb.begin();
-        game.sb.draw(bg, 0,0, SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT);
+        game.sb.draw(bg, 0, 0, Gdx.graphics.getWidth(), (Gdx.graphics.getHeight()));
         sound.draw(game.sb);
         start.draw(game.sb);
 
-        //game.sb.draw(startButton, (Gdx.graphics.getWidth() /2 - 140), (Gdx.graphics.getHeight() / 10), 280, 280);
-        //game.sb.draw(soundBtn, (Gdx.graphics.getWidth() /2 - 250), (Gdx.graphics.getHeight() / 11), 105, 105);
+
         game.sb.draw(logo, (Gdx.graphics.getWidth() / 2 - 240), (Gdx.graphics.getHeight() / 2 -100),500, 500);
         game.sb.draw(extras, (Gdx.graphics.getWidth() /2 - 280), (Gdx.graphics.getHeight() / 14 -12), 130, 130 );
         game.sb.end();
@@ -148,10 +147,11 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
-        if (start.getBoundingRectangle().contains(screenX, screenY)) {
+        if (start.getBoundingRectangle().contains(screenX, (SuperPlanetBlasters.HEIGHT - screenY))) {
+            menuMusic.pause();
             game.setScreen(game.gameScreen);
         }
-        if (sound.getBoundingRectangle().contains(screenX, screenY)) {
+        if (sound.getBoundingRectangle().contains(screenX, (SuperPlanetBlasters.HEIGHT - screenY))) {
             if (game.playMusic) {
                 menuMusic.pause();
                 game.playMusic = false;
