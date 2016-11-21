@@ -109,5 +109,6 @@
     <orderEntry type="library" exported="" name="gdx-1.9.4" level="project" />
     <orderEntry type="library" exported="" name="gdx-ai-1.8.0" level="project" />
     <orderEntry type="module" module-name="core" exported="" />
+    <orderEntry type="library" exported="" name="android-android-24" level="project" />
   </component>
 </module>

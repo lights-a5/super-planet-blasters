@@ -31,10 +31,10 @@ public class HeroShip extends Fighter {
 
     public void defineFighter() {
         value = 999999;
-        blueHero = new TextureRegion(world.getAtlas().findRegion("playerShip2_blue"));
-        redHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_red"));
-        orangeHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_orange"));
-        greenHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_green"));
+        blueHero = new TextureRegion(world.getAtlas().findRegion("Blaster_player1"));
+//        redHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_red")); //do you want me to make these colors to
+//        orangeHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_orange")); // show power-ups? -adam
+//        greenHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_green"));
         sprite = new Sprite(blueHero);
         health = 2;
         invincible = false;

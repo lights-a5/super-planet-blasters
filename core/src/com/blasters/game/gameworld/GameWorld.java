@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.blasters.game.SuperPlanetBlasters;
+import com.blasters.game.screens.GameScreen;
 import com.blasters.game.sprites.BlueFighter;
 import com.blasters.game.sprites.Bullet;
 import com.blasters.game.sprites.Fighter;
@@ -20,53 +22,80 @@ import java.util.Random;
  */
 
 public class GameWorld {
-    public HeroShip player;
+    public HeroShip player; // the player
+    /*
+     * TextureAtlas
+     * TextureAtlas holds a big image file and uses a .pack to index them. But simply using
+     * the getRegion("regionName") function, one has easy access to all regions in the texture
+     * atlas.
+     */
     private TextureAtlas atlas;
-    private int level;
-    public Array<Fighter> enemies;
-    public Array<Bullet> bullets;
-    public Texture bg;
-    public int srcy;
-    public static final int BULLETDELAY = 10;
-    private int currentDelay;
+    private int level; //what level we are on
+    public Array<Fighter> enemies; //An array that holds all the enemies on the screen
+    public Array<Bullet> bullets; //Holds all bullets fired by the main ship
+    Texture bg; //background texture
+    int rateOfBackground; //NOT SURE WHAT THIS IS FOR. EXPLAIN PLZ TYLER?
+    private static final float BULLETDELAY = .2f; //Delay between bullets. Increase for more bullets.
+    private float currentDelay;
+    public GameScreen screen;
+    public Texture playerTexture;
 
-    public GameWorld() {
+    public GameWorld(GameScreen screen) {
+        this.screen = screen;
         atlas = new TextureAtlas("ships_and_bullets.pack");
         player = new HeroShip(this);
         enemies  = new DelayedRemovalArray<Fighter>();
         bullets = new DelayedRemovalArray<Bullet>();
         bg = new Texture("black.png");
-        bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+        bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat); //Not entirely sure what this is
         currentDelay = 0;
     }
 
+    /* update
+     * libgdx will look for this function. Essentially, this will advance the game state every time
+     * it is used. This is how we move the game along.
+     */
     public void update(float delta) {
-        checkForSpawn();
-        for (Fighter enemy : enemies) {
-            enemy.update(delta);
+        checkForSpawn(delta); //checks if we need to spawn
+        for (Fighter enemy : enemies) { //for every fighter
+            enemy.update(delta);        //update it
         }
-        for (Bullet bullet : bullets) {
-            bullet.update(delta);
+        for (Bullet bullet : bullets) { //for every bullet
+            bullet.update(delta);       //update it
         }
-        player.update(delta);
+        player.update(delta);           //then update the player
     }
 
-    private void checkForSpawn() {
-        if (enemies == null || enemies.size == 0) {
-            level++;
-            spawnEnemies();
+    /* checkForSpawn
+     * This function checks if spawns need to happen with enemies and bullets. If there are no
+     * more enemies, we need to go up a level and spawn more. Also, we add bullets.
+     */
+    private void checkForSpawn(float delta) {
+        if (enemies == null || enemies.size == 0) { //if no enemies
+            level++;                                //increase level
+            spawnEnemies();                         //spawn enemies
         }
         if(currentDelay >= BULLETDELAY) {
-            Bullet temp = new Bullet(this, player.sprite.getX() - player.sprite.getRegionWidth() / 4,
-                    player.sprite.getY() - player.sprite.getRegionHeight() / 2);
+            /*
+             * BUG!
+             * Not sure why the bullet spawns not in front of the ship.
+             */
+
+            Bullet temp = new Bullet(this, player.sprite.getX() + (player.sprite.getWidth() / 2 - 123),
+                    player.sprite.getY() + player.sprite.getHeight() - 350);
             bullets.add(temp);
-            currentDelay = 0;
+            currentDelay = 0f;
         }
         else {
-            currentDelay++;
+            currentDelay += delta;
         }
     }
 
+    /*
+     * spawnEnemies
+     * This function provides the functionality to spawn enemies at random places. It works for now,
+     * but later we will need to make something like spawn squadron.
+     */
     private void spawnEnemies() {
         int spawnValue = 0;
         enemies = new DelayedRemovalArray<Fighter>();
@@ -77,6 +106,11 @@ public class GameWorld {
         }
     }
 
+    /* Fighter spawnAnEnemy
+     * spawnEnemies calls this function multiple times. This is how one enemy is spawned. Every
+     * iteration if the spawnValue is 5 less than the level, there is a 50% chance of spawning
+     * a blue ship.
+     */
     private Fighter spawnAnEnemy(int spawnValue) {
         Fighter returnFighter;
         Random random = new Random();
@@ -91,16 +125,24 @@ public class GameWorld {
         else {
             returnFighter = new RedFighter(this);
         }
-        float x = random.nextInt(Gdx.graphics.getWidth() - returnFighter.sprite.getRegionWidth());
-        float y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
+        float x = random.nextInt(SuperPlanetBlasters.WIDTH - returnFighter.sprite.getRegionWidth());
+        float y = random.nextInt(SuperPlanetBlasters.HEIGHT) + SuperPlanetBlasters.HEIGHT ;
         returnFighter.sprite.setPosition(x, y);
         return returnFighter;
     }
 
+    /*
+     * dispose
+     * this function disposes of all our resources. Currently, only our atlas needs to be disposed.
+     */
     public void dispose() {
         atlas.dispose();
     }
 
+    /*
+     * Texture getAtlas
+     * Returns the gameworld's texture atlas.
+     */
     public TextureAtlas getAtlas() {
         return atlas;
     }

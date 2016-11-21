@@ -31,14 +31,14 @@ laserBlue01
   orig: 9, 54
   offset: 0, 0
   index: -1
-laserBlue08
+laserBlueHit2
   rotate: false
   xy: 339, 1
   size: 48, 46
   orig: 48, 46
   offset: 0, 0
   index: -1
-laserBlue09
+laserBlueHit1
   rotate: false
   xy: 389, 1
   size: 48, 46
@@ -59,14 +59,14 @@ laserRed01
   orig: 9, 54
   offset: 0, 0
   index: -1
-laserRed08
+laserRedHit2
   rotate: false
   xy: 439, 1
   size: 48, 46
   orig: 48, 46
   offset: 0, 0
   index: -1
-laserRed09
+laserRedHit1
   rotate: false
   xy: 1, 12
   size: 48, 46

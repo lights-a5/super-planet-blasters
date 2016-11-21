@@ -1,5 +1,6 @@
 package com.blasters.game.sprites;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.blasters.game.gameworld.GameWorld;
@@ -18,9 +19,8 @@ public class BlueFighter extends Fighter {
     public void defineFighter() {
         value = 2;
         health  = 4;
-        fighter = world.getAtlas().findRegion("playerShip3_ blue");
+        fighter = world.getAtlas().findRegion("stingrayShip");
         sprite = new Sprite(fighter);
-        sprite.setScale(.2f, .2f);
     }
 
     public void update(float delta) {
@@ -40,12 +40,15 @@ public class BlueFighter extends Fighter {
                 bullet.kill();
                 if(health <= 0) {
                     die();
+                    Gdx.app.log("BlueFighter", "killed");
                 }
+
             }
         }
     }
 
     private void die() {
+        world.screen.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }
 }
