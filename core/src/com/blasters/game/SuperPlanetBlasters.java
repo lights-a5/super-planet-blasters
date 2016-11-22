@@ -3,6 +3,7 @@ package com.blasters.game;
 
 import com.badlogic.gdx.Game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -21,41 +22,41 @@ import com.blasters.game.screens.MenuScreen;
  * Height all the time. That would give us much cleaner code.
  */
 public class SuperPlanetBlasters extends Game {
-	public static final int HEIGHT = 800;
-	public static final int WIDTH =  600;
-	public static final String TITLE = "Super Planet Blasters!";
-	public SpriteBatch sb;
-	public Screen gameScreen;
-	public Screen menuScreen;
-	public Screen loadingScreen;
-	public boolean playMusic;
-	public OrthographicCamera camera;
-	public AssetManager assetManager;
+   // public static final int HEIGHT = 800; I took these out in favor of Gdx.graphics.getHeight()
+   // public static final int WIDTH =  600; that way no matter what size screen it should fit.
+    public static final String TITLE = "Super Planet Blasters!";
+    public SpriteBatch sb;
+    public Screen gameScreen;
+    public Screen menuScreen;
+    public Screen loadingScreen;
+    public boolean playMusic;
+    public OrthographicCamera camera;
+    public AssetManager assetManager;
 
-	@Override
-	public void create () {
-		assetManager = new AssetManager();
-		sb = new SpriteBatch();
-		playMusic = true;
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, WIDTH, HEIGHT);
-		loadingScreen = new LoadingScreen(this);
-		menuScreen = new MenuScreen(this);
-		gameScreen = new GameScreen(this);
-		setScreen(loadingScreen);
-	}
+    @Override
+    public void create () {
+        assetManager = new AssetManager();
+        sb = new SpriteBatch();
+        playMusic = true;
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        loadingScreen = new LoadingScreen(this);
+        menuScreen = new MenuScreen(this);
+        gameScreen = new GameScreen(this);
+        setScreen(loadingScreen);
+    }
 
-	@Override
-	public void render () {
-		super.render();
-	}
-	
-	@Override
-	public void dispose () {
-		sb.dispose();
-		loadingScreen.dispose();
-		gameScreen.dispose();
-		menuScreen.dispose();
-		assetManager.dispose();
-	}
+    @Override
+    public void render () {
+        super.render();
+    }
+
+    @Override
+    public void dispose () {
+        sb.dispose();
+        loadingScreen.dispose();
+        gameScreen.dispose();
+        menuScreen.dispose();
+        assetManager.dispose();
+    }
 }

@@ -1,6 +1,8 @@
 package com.blasters.game.sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -17,25 +19,39 @@ import com.blasters.game.gameworld.GameWorld;
 public class Bullet {
     private GameWorld world;
     private Vector2 velocity;
-    public Sprite sprite;
+    public Sprite laserSprite;
+    private Texture hits;
+
 
 
     public Bullet(GameWorld world, float x, float y) {
         this.world = world;
-        velocity = new Vector2(0, 0);
+        velocity = new Vector2(0, 2);
         TextureRegion bullet = world.getAtlas().findRegion("laserBlue01");
-        sprite = new Sprite(bullet);
-        sprite.setScale(.2f, .2f);
-        sprite.setPosition(x, y);
+        laserSprite = new Sprite(bullet);
+        laserSprite.rotate90(true);
+        laserSprite.setScale(.02f,.8f);
+        laserSprite.setPosition(x, y);
     }
+
 
     /*
      * kill
-     * Currently, this only removes the current bullet from the bullet array in the game world.
-     * Later on, we can instead play an explosion animation if it hits a ship.
+     * Currently, this only removes the current bullet because it is a
+     * sprite I don't know how to make it animate like a texture can...
      */
-    void kill() {
+    void kill()
+    {
+
         world.bullets.removeValue(this, true);
+    }
+    void animateBullet(){
+        TextureRegion hit1 = world.getAtlas().findRegion("laserBlueHit1");
+        TextureRegion hit2 = world.getAtlas().findRegion("laserBlueHit2");
+        TextureRegion[] bulletHit = { hit1, hit2};
+
+        Animation hitAnimation = new Animation(0.01f, bulletHit);
+        hitAnimation.setPlayMode(Animation.PlayMode.NORMAL);
     }
 
     /*
@@ -48,10 +64,10 @@ public class Bullet {
     public void update(float delta) {
         velocity.add(0, 500);
         velocity.scl(delta);
-        sprite.translate(velocity.x, velocity.y);
-        if (sprite.getY() > Gdx.graphics.getHeight() + sprite.getRegionHeight()) {
+        laserSprite.translate(velocity.x, velocity.y);
+        if (laserSprite.getY() > Gdx.graphics.getHeight() + laserSprite.getRegionHeight()) {
             world.bullets.removeValue(this, true);
         }
-        System.out.println("Bullet: " + sprite.getX());
+        System.out.println("Bullet: " + laserSprite.getX());
     }
 }

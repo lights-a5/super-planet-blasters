@@ -30,17 +30,18 @@ public class GameScreen implements Screen {
     public Hud hud;
 
     public GameScreen(SuperPlanetBlasters game) {
+        Viewport gameViewPort = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), game.camera);
+        gameViewPort.apply();
         this.game = game;
         hud = new Hud(game.sb);
         world = new GameWorld(this);
-        Viewport gameViewPort = new FitViewport(SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT, game.camera);
-        gameViewPort.apply();
+
     }
 
     @Override
     public void show() {
         renderer = new GameRenderer(world, this);
-        gameMusic = game.assetManager.get("GSLevel_1.mp3", Music.class);
+        gameMusic = game.assetManager.get("MOI.mp3", Music.class);
         if(game.playMusic) {
             gameMusic.setLooping(true);
             gameMusic.play();

@@ -1,5 +1,9 @@
 package com.blasters.game.screens;
 
+/**
+ * Created by Adam on 11/18/2016.
+ */
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -11,9 +15,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.blasters.game.SuperPlanetBlasters;
 
-/**
- * Created by Tamara on 11/17/2016.
- */
 
 public class LoadingScreen implements Screen {
     private final SuperPlanetBlasters game;
@@ -40,7 +41,7 @@ public class LoadingScreen implements Screen {
 
     private void queueAssets() {
         game.assetManager.load("bolt.mp3", Music.class);
-        game.assetManager.load("GSLevel_1.mp3", Music.class);
+        game.assetManager.load("MOI.mp3", Music.class);
         game.assetManager.load("ships_and_bullets.pack", TextureAtlas.class);
         game.assetManager.load("menuBg.jpg", Texture.class);
         game.assetManager.load("StartButn.png", Texture.class);
@@ -48,11 +49,12 @@ public class LoadingScreen implements Screen {
         game.assetManager.load("soundOn.png", Texture.class);
         game.assetManager.load("soundOff.png", Texture.class);
         game.assetManager.load("paper_planet1.png", Texture.class);
+
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+        Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         update(delta);
