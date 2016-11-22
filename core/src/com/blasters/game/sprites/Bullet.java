@@ -1,6 +1,7 @@
 package com.blasters.game.sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -19,6 +20,8 @@ public class Bullet {
     private GameWorld world;
     private Vector2 velocity;
     public Sprite laserSprite;
+    private Texture hits;
+
 
 
     public Bullet(GameWorld world, float x, float y) {
@@ -39,14 +42,16 @@ public class Bullet {
      */
     void kill()
     {
+
+        world.bullets.removeValue(this, true);
+    }
+    void animateBullet(){
         TextureRegion hit1 = world.getAtlas().findRegion("laserBlueHit1");
         TextureRegion hit2 = world.getAtlas().findRegion("laserBlueHit2");
         TextureRegion[] bulletHit = { hit1, hit2};
 
         Animation hitAnimation = new Animation(0.01f, bulletHit);
         hitAnimation.setPlayMode(Animation.PlayMode.NORMAL);
-
-        world.bullets.removeValue(this, true);
     }
 
     /*

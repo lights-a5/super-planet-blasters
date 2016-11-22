@@ -43,6 +43,7 @@ public class GameWorld {
     public GameWorld(GameScreen screen) {
         this.screen = screen;
         atlas = new TextureAtlas("ships_and_bullets.pack");
+        // we might want to make two
         player = new HeroShip(this);
         enemies  = new DelayedRemovalArray<Fighter>();
         bullets = new DelayedRemovalArray<Bullet>();
