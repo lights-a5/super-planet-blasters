@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 
 
-public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
+public class MenuScreen implements Screen, InputProcessor {
 
     public SuperPlanetBlasters game;
     private Music menuMusic;
@@ -82,20 +82,12 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     }
 
 
-    @Override
-    public void create() {
 
-    }
 
     @Override
     public void resize(int width, int height) {
 
 
-
-    }
-
-    @Override
-    public void render() {
 
     }
 
