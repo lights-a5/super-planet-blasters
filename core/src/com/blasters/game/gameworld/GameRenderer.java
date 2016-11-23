@@ -64,7 +64,7 @@ public class GameRenderer {
      */
     private void drawBullets() {
         for (Bullet bullet : myWorld.bullets) {
-            bullet.sprite.draw(game.sb);
+            bullet.laserSprite.draw(game.sb);
         }
     }
 

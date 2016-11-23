@@ -28,8 +28,6 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     private Texture logo;
     private Texture extras;
 
-    private InputListener input;
-
     private Sprite start;
     private Sprite soundOn;
     private Sprite soundOff;
@@ -154,7 +152,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         }
         if (sound.getBoundingRectangle().contains(screenX, (Gdx.graphics.getHeight() - screenY))) {
             if (game.playMusic) {
-                menuMusic.pause();
+                menuMusic.stop();
                 sound.set(soundOff);
                 game.playMusic = false;
             } else {
