@@ -77,7 +77,7 @@ public class MenuScreen implements Screen, InputProcessor {
         game.sb.draw(logo, (Gdx.graphics.getWidth() / 2 - 240), (Gdx.graphics.getHeight() / 2 -100),500, 500);
         game.sb.draw(extras, (Gdx.graphics.getWidth() /2 - 280), (Gdx.graphics.getHeight() / 14 -12), 130, 130 );
         game.sb.end();
-        Gdx.input.setInputProcessor(this);
+        Gdx.input.setInputProcessor(this);//
 
     }
 
