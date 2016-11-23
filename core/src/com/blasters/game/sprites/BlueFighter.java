@@ -41,7 +41,9 @@ public class BlueFighter extends Fighter {
                 bullet.kill();
                 if(health <= 0) {
                     die();
+                    Gdx.app.log("BlueFighter", "killed");
                 }
+
             }
         }
     }

@@ -5,14 +5,10 @@ package com.blasters.game.screens;
  */
         import com.badlogic.gdx.ApplicationListener;
         import com.badlogic.gdx.Gdx;
-        import com.badlogic.gdx.Input;
         import com.badlogic.gdx.InputProcessor;
         import com.badlogic.gdx.Screen;
-        import com.blasters.game.screens.GameScreen;
         import com.badlogic.gdx.audio.Music;
         import com.badlogic.gdx.audio.Sound;
-        import com.badlogic.gdx.files.FileHandle;
-        import com.badlogic.gdx.graphics.OrthographicCamera;//
         import com.badlogic.gdx.graphics.Texture;
         import com.badlogic.gdx.graphics.g2d.Sprite;
         import com.blasters.game.SuperPlanetBlasters;
@@ -23,58 +19,44 @@ package com.blasters.game.screens;
 public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
     public SuperPlanetBlasters game;
-    private Texture startButton;
-    private Texture logo;
-    private Texture soundBtn;
-    private Texture extras;
-    private Texture bg;
-
     private Music menuMusic;
-    private Sound click; //no click sound yet
-    private boolean playing;
+    //private Sound click; //no click sound yet
+
+    private Texture bg;
+    private Texture logo;
+    private Texture extras;
 
     private InputListener input;
 
     private Sprite start;
     private Sprite sound;
 
-    int inX;
-    int inY;
-
-    String message;
-    boolean clicked;
-
     public MenuScreen (SuperPlanetBlasters game) {
-
-        menuMusic = Gdx.audio.newMusic(Gdx.files.internal("bolt.mp3"));
-
-        OrthographicCamera camera = new OrthographicCamera();
-        startButton = new Texture("StartButn.png");
-        logo = new Texture("SPB_logo.png");
-        soundBtn = new Texture("soundOn.png");
-        extras = new Texture("paper_planet1.png");
-        bg = new Texture("menuBg.jpg");
         this.game = game;
-
-        start = new Sprite(startButton);
-        start.setScale(.3f, .3f);
-        start.setPosition((Gdx.graphics.getWidth() /2 - start.getWidth() / 2), (Gdx.graphics.getHeight() / 5 - start.getHeight() /2));
-
-        sound = new Sprite(soundBtn);
-        sound.setScale(.5f, .5f);
-        sound.setPosition( (Gdx.graphics.getWidth() - sound.getWidth() ), (Gdx.graphics.getHeight() / 5 - sound.getWidth() ));
-
-        menuMusic.play();
-        playing = true;
-
-        Gdx.input.setInputProcessor(this);
-        clicked = false;
-
     }
 
 
     @Override
     public void show() {
+        menuMusic = game.assetManager.get("bolt.mp3", Music.class);
+        if (game.playMusic) {
+            menuMusic.play();
+        }
+        start = new Sprite(game.assetManager.get("StartButn.png", Texture.class));
+        start.setScale(.3f, .3f);
+        start.setPosition((SuperPlanetBlasters.WIDTH / 2 - start.getWidth() / 2),
+                (SuperPlanetBlasters.HEIGHT / 5 - start.getHeight() /2));
+
+        sound = new Sprite(game.assetManager.get("StartButn.png", Texture.class));
+        sound.setScale(.5f, .5f);
+        sound.setPosition( (SuperPlanetBlasters.WIDTH - sound.getWidth() ),
+                (SuperPlanetBlasters.HEIGHT / 5 - sound.getWidth() ));
+
+        bg = game.assetManager.get("menuBg.jpg", Texture.class);
+        logo = game.assetManager.get("SPB_logo.png", Texture.class);
+        // I'm imagining this will be turned into a sprite later
+        extras = game.assetManager.get("paper_planet1.png", Texture.class);
+
 
     }
 
@@ -85,7 +67,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         //test if touched within coordinates of volume button
         //turn on or off sound
         game.sb.begin();
-        game.sb.draw(bg, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        game.sb.draw(bg, 0,0, SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT);
         sound.draw(game.sb);
         start.draw(game.sb);
 
@@ -133,7 +115,9 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
     @Override
     public void dispose() {
-
+        logo.dispose();
+        extras.dispose();
+        bg.dispose();
         menuMusic.dispose();
     }
 
@@ -154,31 +138,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        inX = screenX;
-        inY = screenY;
 
-        if(sound.getBoundingRectangle().contains(screenX, screenY)){
-            clicked = true;
-        }
-
-        message = "Clicked at " + screenX + ", " + screenY;
-        System.out.println(message);
-        System.out.println("Button is " + clicked);
-        System.out.println("Rectangle coordinates " + sound.getBoundingRectangle().getX() + ", " +  sound.getBoundingRectangle().getY());
-
-        if (sound.getBoundingRectangle().contains(inX, inY)) {
-            if (playing) {
-                menuMusic.pause();
-                playing = false;
-            } else {
-                menuMusic.play();
-                playing = true;
-            }
-        }
-
-        if (start.getBoundingRectangle().contains(inX, inY)) {
-            game.setScreen(new GameScreen(game,playing));
-        }
 
         return true;
     }
@@ -186,6 +146,18 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
+        if (start.getBoundingRectangle().contains(screenX, screenY)) {
+            game.setScreen(game.gameScreen);
+        }
+        if (sound.getBoundingRectangle().contains(screenX, screenY)) {
+            if (game.playMusic) {
+                menuMusic.pause();
+                game.playMusic = false;
+            } else {
+                menuMusic.play();
+                game.playMusic = true;
+            }
+        }
         return true;
     }
 
@@ -203,6 +175,4 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     public boolean scrolled(int amount) {
         return false;
     }
-
-
 }

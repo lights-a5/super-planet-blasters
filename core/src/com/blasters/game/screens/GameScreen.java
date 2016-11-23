@@ -27,32 +27,24 @@ public class GameScreen implements Screen {
     private GameRenderer renderer;
     public SuperPlanetBlasters game;
     public Music gameMusic;
-    private Viewport gameViewPort;
-    private OrthographicCamera cam;
     public Hud hud;
 
-    public GameScreen(SuperPlanetBlasters game, Boolean isMusicPlaying) {
+    public GameScreen(SuperPlanetBlasters game) {
         this.game = game;
         hud = new Hud(game.sb);
         world = new GameWorld(this);
-        cam = new OrthographicCamera();
-
-        if(isMusicPlaying)
-        {
-            gameMusic = Gdx.audio.newMusic(Gdx.files.internal("GSLevel_1.mp3"));
-            gameMusic.setLooping(isMusicPlaying);
-            gameMusic.play();
-
-        }
-        gameViewPort = new FitViewport(SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT, cam);
+        Viewport gameViewPort = new FitViewport(SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT, game.camera);
         gameViewPort.apply();
-        cam.position.set(gameViewPort.getWorldWidth() / 2, gameViewPort.getWorldHeight() / 2, 0);
-        renderer = new GameRenderer(world, this);
-        cam.update();
     }
 
     @Override
     public void show() {
+        renderer = new GameRenderer(world, this);
+        gameMusic = game.assetManager.get("GSLevel_1.mp3", Music.class);
+        if(game.playMusic) {
+            gameMusic.setLooping(true);
+            gameMusic.play();
+        }
 
     }
 
@@ -61,7 +53,7 @@ public class GameScreen implements Screen {
         world.update(delta);
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        game.sb.setProjectionMatrix(cam.combined); //only draw what the camera can see
+        game.sb.setProjectionMatrix(game.camera.combined); //only draw what the camera can see
         renderer.render();
         hud.draw();
 
@@ -89,6 +81,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+        hud.dispose();
         world.dispose();
         renderer.dispose();
         gameMusic.dispose();
