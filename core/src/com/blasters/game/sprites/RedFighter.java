@@ -2,6 +2,7 @@ package com.blasters.game.sprites;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.gameworld.GameWorld;
 
 /**
@@ -19,6 +20,9 @@ public class RedFighter extends Fighter {
         TextureRegion fighter = world.getAtlas().findRegion("barracudaShip"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
         sprite.setScale(.5f, .5f);
+        x = random.nextInt(SuperPlanetBlasters.WIDTH - sprite.getRegionWidth());
+        y = random.nextInt(SuperPlanetBlasters.HEIGHT) + SuperPlanetBlasters.HEIGHT ;
+        sprite.setPosition(x, y);
     }
 
     public void update(float delta) {

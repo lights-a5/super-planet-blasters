@@ -4,6 +4,7 @@ import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.screens.GameScreen;
 import com.blasters.game.sprites.Bullet;
 import com.blasters.game.sprites.Fighter;
+import com.blasters.game.sprites.Power;
 
 /*******************************************************
  * This Class holds the renderer for the Game World. It holds
@@ -34,6 +35,7 @@ public class GameRenderer {
         drawBackground();
         drawBullets();
         drawFighters();
+        drawPowers();
         myWorld.player.sprite.draw(game.sb);
         game.sb.end();
     }
@@ -71,6 +73,12 @@ public class GameRenderer {
      * dispose
      * When we move the spritebatch to the main class, we honestly won't need this function anymore.
      */
+
+    private void drawPowers(){
+        for(Power power : myWorld.powerups){
+            power.sprite.draw(game.sb);
+        }
+    }
     public void dispose() {
 
     }

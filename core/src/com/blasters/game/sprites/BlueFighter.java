@@ -3,6 +3,7 @@ package com.blasters.game.sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.gameworld.GameWorld;
 
 /**
@@ -23,7 +24,10 @@ public class BlueFighter extends Fighter {
         fighter = world.getAtlas().findRegion("stingrayShip");
         sprite = new Sprite(fighter);
         sprite.setRotation(315);
+        x = random.nextInt(SuperPlanetBlasters.WIDTH - sprite.getRegionWidth());
+        y = random.nextInt(SuperPlanetBlasters.HEIGHT) + SuperPlanetBlasters.HEIGHT ;
         change = true;
+        sprite.setPosition(x, y);
     }
 
     public void update(float delta) {

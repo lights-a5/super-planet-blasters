@@ -33,6 +33,12 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
 
     public MenuScreen (SuperPlanetBlasters game) {
         this.game = game;
+
+    }
+
+    @Override
+    public void create() {
+
     }
 
 
@@ -47,7 +53,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         start.setPosition((SuperPlanetBlasters.WIDTH / 2 - start.getWidth() / 2),
                 (SuperPlanetBlasters.HEIGHT / 5 - start.getHeight() /2));
 
-        sound = new Sprite(game.assetManager.get("StartButn.png", Texture.class));
+        sound = new Sprite(game.assetManager.get("soundOn.png", Texture.class));
         sound.setScale(.5f, .5f);
         sound.setPosition( (SuperPlanetBlasters.WIDTH - sound.getWidth() ),
                 (SuperPlanetBlasters.HEIGHT / 5 - sound.getWidth() ));
@@ -57,6 +63,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         // I'm imagining this will be turned into a sprite later
         extras = game.assetManager.get("paper_planet1.png", Texture.class);
 
+        Gdx.input.setInputProcessor(this);
 
     }
 
@@ -76,15 +83,10 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         game.sb.draw(logo, (Gdx.graphics.getWidth() / 2 - 240), (Gdx.graphics.getHeight() / 2 -100),500, 500);
         game.sb.draw(extras, (Gdx.graphics.getWidth() /2 - 280), (Gdx.graphics.getHeight() / 14 -12), 130, 130 );
         game.sb.end();
-        Gdx.input.setInputProcessor(this);
 
     }
 
 
-    @Override
-    public void create() {
-
-    }
 
     @Override
     public void resize(int width, int height) {
@@ -147,6 +149,7 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
         if (start.getBoundingRectangle().contains(screenX, screenY)) {
+            menuMusic.pause();
             game.setScreen(game.gameScreen);
         }
         if (sound.getBoundingRectangle().contains(screenX, screenY)) {
