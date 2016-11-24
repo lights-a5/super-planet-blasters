@@ -7,6 +7,7 @@ package com.blasters.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -42,7 +43,9 @@ public class LoadingScreen implements Screen {
     private void queueAssets() {
         game.assetManager.load("bolt.mp3", Music.class);
         game.assetManager.load("MOI.mp3", Music.class);
-        game.assetManager.load("ships_and_bullets.pack", TextureAtlas.class);
+        game.assetManager.load("plasma2.wav", Sound.class);
+        game.assetManager.load("generalAtlas.pack", TextureAtlas.class);
+        game.assetManager.load("PlayerAtlas.pack", TextureAtlas.class);
         game.assetManager.load("menuBg.jpg", Texture.class);
         game.assetManager.load("StartButn.png", Texture.class);
         game.assetManager.load("SPB_logo.png", Texture.class);

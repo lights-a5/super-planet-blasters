@@ -1,30 +1,28 @@
 package com.blasters.game.sprites;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.blasters.game.gameworld.GameWorld;
 
 /**
- * Created by SHELIVES on 11/3/2016.
+ * Created by Adam on 11/24/2016.
  */
 
-public class BlueFighter extends Fighter {
-    private TextureRegion fighter;
-
-    public BlueFighter(GameWorld world) {
+public class DordraxShip extends Fighter {
+    public DordraxShip(GameWorld world) {
         super(world);
     }
 
     public void defineFighter() {
-        value = 2;
-        health  = 4;
-        fighter = world.getAtlas().findRegion("bansheeShip");
+        value = 3;
+        health  = 12;
+        TextureRegion fighter = world.getAtlas().findRegion("dordraxShip"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
+        sprite.setScale(.5f, .5f);
     }
 
     public void update(float delta) {
-        velocity.add(0, -500);
+        velocity.add(0, -91);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
 
@@ -37,12 +35,11 @@ public class BlueFighter extends Fighter {
         for (Bullet bullet : world.bullets) {
             if (sprite.getBoundingRectangle().overlaps(bullet.laserSprite.getBoundingRectangle())) {
                 health--;
+                //bullet
                 bullet.kill();
                 if(health <= 0) {
                     die();
-                    Gdx.app.log("BlueFighter", "killed");
                 }
-
             }
         }
     }

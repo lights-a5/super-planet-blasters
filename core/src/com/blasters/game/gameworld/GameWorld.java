@@ -2,17 +2,16 @@ package com.blasters.game.gameworld;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.screens.GameScreen;
-import com.blasters.game.sprites.BlueFighter;
+import com.blasters.game.sprites.DordraxShip;
 import com.blasters.game.sprites.Bullet;
 import com.blasters.game.sprites.Fighter;
 import com.blasters.game.sprites.HeroShip;
-import com.blasters.game.sprites.RedFighter;
+import com.blasters.game.sprites.bansheeShip;
+import com.blasters.game.sprites.morcegoShip;
 
 import java.util.Random;
 
@@ -30,6 +29,7 @@ public class GameWorld {
      * atlas.
      */
     private TextureAtlas atlas;
+    private TextureAtlas playerAtlas;
     private int level; //what level we are on
     public Array<Fighter> enemies; //An array that holds all the enemies on the screen
     public Array<Bullet> bullets; //Holds all bullets fired by the main ship
@@ -42,7 +42,8 @@ public class GameWorld {
 
     public GameWorld(GameScreen screen) {
         this.screen = screen;
-        atlas = new TextureAtlas("ships_and_bullets.pack");
+        atlas = new TextureAtlas("generalAtlas.pack");
+        playerAtlas = new TextureAtlas("PlayerAtlas.pack");
         // we might want to make two
         player = new HeroShip(this);
         enemies  = new DelayedRemovalArray<Fighter>();
@@ -114,14 +115,14 @@ public class GameWorld {
         Random random = new Random();
         if (level - spawnValue >= 5) {
             if (random.nextInt() % 2 == 0) {
-                returnFighter = new BlueFighter(this);
+                returnFighter = new bansheeShip(this);
             }
             else {
-                returnFighter = new RedFighter(this);
+                returnFighter = new DordraxShip(this);
             }
         }
         else {
-            returnFighter = new RedFighter(this);
+            returnFighter = new morcegoShip(this);
         }
         float x = random.nextInt(Gdx.graphics.getWidth() - returnFighter.sprite.getRegionWidth());
         float y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
@@ -143,5 +144,8 @@ public class GameWorld {
      */
     public TextureAtlas getAtlas() {
         return atlas;
-    }
+    } //basically everything but the player ship
+    public TextureAtlas getPlayerAtlas() {
+        return playerAtlas;
+    } //all the colors and stuff
 }

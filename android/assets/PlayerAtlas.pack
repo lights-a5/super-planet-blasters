@@ -1,0 +1,61 @@
+PlayerAtlas.png
+size: 1024, 1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+PlanetBlaster
+  rotate: false
+  xy: 0, 0
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_GoldWings
+  rotate: false
+  xy: 273, 0
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_GunV1
+  rotate: false
+  xy: 546, 0
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_GunV2
+  rotate: false
+  xy: 0, 311
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_Shield1
+  rotate: false
+  xy: 273, 311
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_Shield2
+  rotate: false
+  xy: 546, 311
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_Shield3
+  rotate: false
+  xy: 0, 622
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlasterDamage
+  rotate: false
+  xy: 273, 622
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1

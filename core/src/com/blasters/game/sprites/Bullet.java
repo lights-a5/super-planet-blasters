@@ -27,7 +27,7 @@ public class Bullet {
     public Bullet(GameWorld world, float x, float y) {
         this.world = world;
         velocity = new Vector2(0, 2);
-        TextureRegion bullet = world.getAtlas().findRegion("laserBlue01");
+        TextureRegion bullet = world.getAtlas().findRegion("laserBlue05");
         laserSprite = new Sprite(bullet);
         laserSprite.rotate90(true);
         laserSprite.setScale(.02f,.8f);

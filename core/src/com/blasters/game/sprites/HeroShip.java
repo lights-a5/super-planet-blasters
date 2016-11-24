@@ -16,7 +16,7 @@ import com.blasters.game.gameworld.GameWorld;
 public class HeroShip extends Fighter {
     private final float INVINCIBLETIME = 8f;
     private float timeInvincible;
-    private TextureRegion blueHero;
+    private TextureRegion hero;
     private TextureRegion redHero;
     private TextureRegion orangeHero;
     private TextureRegion greenHero;
@@ -32,11 +32,11 @@ public class HeroShip extends Fighter {
 
     public void defineFighter() {
         value = 999999;
-        blueHero = new TextureRegion(world.getAtlas().findRegion("Blaster_player1"));
-//        redHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_red")); //do you want me to make these colors to
+        hero = new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster"));
+       // redHero = new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_GunV1"));
 //        orangeHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_orange")); // show power-ups? -adam
 //        greenHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_green"));
-        sprite = new Sprite(blueHero);
+        sprite = new Sprite(hero);
         health = 2;
         invincible = false;
         timeInvincible = 0;
@@ -60,7 +60,7 @@ public class HeroShip extends Fighter {
                 break;
             case GREEN:
             default:
-                sprite.setRegion(blueHero);
+                sprite.setRegion(hero);
                 colorState = State.BLUE;
                 break;
         }

@@ -8,21 +8,21 @@ import com.blasters.game.gameworld.GameWorld;
  * The basic red fighter.
  */
 
-public class RedFighter extends Fighter {
-    public RedFighter(GameWorld world) {
+public class morcegoShip extends Fighter {
+    public morcegoShip(GameWorld world) {
         super(world);
     }
 
     public void defineFighter() {
         value = 1;
-        health  = 2;
-        TextureRegion fighter = world.getAtlas().findRegion("dracoShip"); //updated to reflect new atlas
+        health  = 7;
+        TextureRegion fighter = world.getAtlas().findRegion("morcegoShip"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
         sprite.setScale(.5f, .5f);
     }
 
     public void update(float delta) {
-        velocity.add(0, -500);
+        velocity.add(0, -200);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
 
