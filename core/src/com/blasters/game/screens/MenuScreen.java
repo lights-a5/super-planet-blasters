@@ -2,7 +2,7 @@ package com.blasters.game.screens;
 
 /**
  * Created by Adam on 11/15/2016.
- * modified- most recent 11/27/16
+ * modified most recent
  */
 
 import com.badlogic.gdx.Gdx;

@@ -48,7 +48,7 @@ public class bansheeShip extends Fighter {
     }
 
     private void die() {
-        world.screen.hud.addScore(value);
+        world.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }
 }

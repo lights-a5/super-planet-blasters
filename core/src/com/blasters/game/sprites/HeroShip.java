@@ -33,8 +33,8 @@ public class HeroShip extends Fighter {
     public void defineFighter() {
         value = 999999;
         hero = new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster"));
-       // redHero = new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_GunV1"));
-//        orangeHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_orange"));
+//        redHero = new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_gunV1"));
+//        orangeHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_orange")); // show power-ups? -adam
 //        greenHero = new TextureRegion(world.getAtlas().findRegion("playerShip1_green"));
         sprite = new Sprite(hero);
         health = 2;

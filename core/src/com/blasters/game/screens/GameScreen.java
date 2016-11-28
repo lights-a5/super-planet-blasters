@@ -27,13 +27,11 @@ public class GameScreen implements Screen {
     private GameRenderer renderer;
     public SuperPlanetBlasters game;
     public Music gameMusic;
-    public Hud hud;
 
     public GameScreen(SuperPlanetBlasters game) {
         Viewport gameViewPort = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), game.camera);
         gameViewPort.apply();
         this.game = game;
-        hud = new Hud(game.sb);
         world = new GameWorld(this);
 
     }
@@ -56,7 +54,6 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.sb.setProjectionMatrix(game.camera.combined); //only draw what the camera can see
         renderer.render();
-        hud.draw();
 
     }
 
@@ -82,7 +79,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        hud.dispose();
+
         world.dispose();
         renderer.dispose();
         gameMusic.dispose();

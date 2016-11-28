@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.blasters.game.SuperPlanetBlasters;
+import com.blasters.game.scenes.Hud;
 import com.blasters.game.screens.GameScreen;
 import com.blasters.game.sprites.DordraxShip;
 import com.blasters.game.sprites.Bullet;
@@ -38,8 +40,8 @@ public class GameWorld {
     private static final float BULLETDELAY = .15f; //Delay between bullets. Increase for more bullets.
     private float currentDelay;
     public GameScreen screen;
-    public Texture playerTexture;
     public boolean noBoss = true;
+    public Hud hud;
 
     public GameWorld(GameScreen screen) {
         this.screen = screen;
@@ -52,6 +54,7 @@ public class GameWorld {
         bg = new Texture("black.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat); //Not entirely sure what this is
         currentDelay = 0;
+        hud = new Hud(screen.game.sb);
     }
 
     /* update
@@ -107,13 +110,15 @@ public class GameWorld {
             enemies.add(fighter);
             }
         }
-        else{
+        else {
             spawnBoss();
         }
+
     }
 
     private void spawnBoss() {
         noBoss = false;
+
 
     }
 
@@ -136,8 +141,9 @@ public class GameWorld {
         else {
             returnFighter = new morcegoShip(this);
         }
-        float x = random.nextInt(Gdx.graphics.getWidth() - returnFighter.sprite.getRegionWidth());
-        float y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
+
+        float x = random.nextInt(SuperPlanetBlasters.WIDTH - returnFighter.sprite.getRegionWidth());
+        float y = random.nextInt(SuperPlanetBlasters.HEIGHT) + SuperPlanetBlasters.HEIGHT;
         returnFighter.sprite.setPosition(x, y);
         return returnFighter;
     }
@@ -147,6 +153,7 @@ public class GameWorld {
      * this function disposes of all our resources. Currently, only our atlas needs to be disposed.
      */
     public void dispose() {
+        hud.dispose();
         atlas.dispose();
     }
 

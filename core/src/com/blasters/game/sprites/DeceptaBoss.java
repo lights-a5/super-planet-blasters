@@ -31,7 +31,7 @@ public class DeceptaBoss extends Fighter {
 
     private void die() {
         //animate death
-        world.screen.hud.addScore(value);
+        world.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }
 }
