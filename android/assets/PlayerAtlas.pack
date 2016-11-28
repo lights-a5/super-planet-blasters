@@ -6,8 +6,8 @@ repeat: none
 PlanetBlaster
   rotate: false
   xy: 0, 0
-  size: 273, 311
-  orig: 273, 311
+  size: 274, 311
+  orig: 274, 311
   offset: 0, 0
   index: -1
 PlanetBlaster_GoldWings

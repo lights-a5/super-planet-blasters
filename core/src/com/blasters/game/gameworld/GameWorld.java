@@ -39,6 +39,7 @@ public class GameWorld {
     private float currentDelay;
     public GameScreen screen;
     public Texture playerTexture;
+    public boolean noBoss = true;
 
     public GameWorld(GameScreen screen) {
         this.screen = screen;
@@ -79,10 +80,10 @@ public class GameWorld {
         }
         if(currentDelay >= BULLETDELAY) {
 
-            Bullet temp = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.29f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
+            Bullet temp = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / (2f)), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
             bullets.add(temp);
-            Bullet two = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.99f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
-            bullets.add(two);
+           // Bullet two = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.99f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
+            //bullets.add(two);
             currentDelay = 0f;
         }
         else {
@@ -96,13 +97,24 @@ public class GameWorld {
      * but later we will need to make something like spawn squadron.
      */
     private void spawnEnemies() {
+        if(noBoss)
+        {
         int spawnValue = 0;
         enemies = new DelayedRemovalArray<Fighter>();
         while (spawnValue < level) {
             Fighter fighter = spawnAnEnemy(spawnValue);
             spawnValue += fighter.value;
             enemies.add(fighter);
+            }
         }
+        else{
+            spawnBoss();
+        }
+    }
+
+    private void spawnBoss() {
+        noBoss = false;
+
     }
 
     /* Fighter spawnAnEnemy
