@@ -44,6 +44,11 @@ public class DordraxShip extends Fighter {
         }
     }
 
+    @Override
+    public void move(float delta) {
+
+    }
+
     private void die() {
         world.hud.addScore(value);
         world.enemies.removeValue(this, true);

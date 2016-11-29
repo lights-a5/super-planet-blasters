@@ -19,9 +19,9 @@ public class FighterGenerator {
     public Fighter generate(int level, int spawnValue, GameWorld game) {
         Random random = new Random();
         if (level - spawnValue >= 5 && random.nextInt() % 2 == 0) {
-            return new BlueFighter(game);
+            return new bansheeShip(game);
         } else {
-            return new RedFighter(game);
+            return new morcegoShip(game);
         }
     }
 

@@ -22,9 +22,7 @@ public class morcegoShip extends Fighter {
     }
 
     public void update(float delta) {
-        velocity.add(0, -200);
-        velocity.scl(delta);
-        sprite.translate(velocity.x, velocity.y);
+        move(delta);
 
         if (sprite.getY() + sprite.getHeight() < 0) {
             world.enemies.removeValue(this, true);
@@ -42,6 +40,13 @@ public class morcegoShip extends Fighter {
                 }
             }
         }
+    }
+
+    @Override
+    public void move(float delta) {
+        velocity.add(0, -200);
+        velocity.scl(delta);
+        sprite.translate(velocity.x, velocity.y);
     }
 
     private void die() {

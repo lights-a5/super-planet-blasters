@@ -30,7 +30,7 @@ public class Bullet {
         TextureRegion bullet = world.getAtlas().findRegion("laserBlue05");
         laserSprite = new Sprite(bullet);
         laserSprite.rotate90(true);
-        laserSprite.setScale(.02f,.8f);
+        laserSprite.setScale(.5f);
         laserSprite.setPosition(x, y);
     }
 
@@ -42,7 +42,6 @@ public class Bullet {
      */
     void kill()
     {
-
         world.bullets.removeValue(this, true);
     }
     void animateBullet(){

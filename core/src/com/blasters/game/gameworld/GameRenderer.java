@@ -34,9 +34,9 @@ public class GameRenderer {
     public void render() {
         game.sb.begin();
         drawBackground();
-        drawBullets();
         drawFighters();
         drawPowers();
+        drawBullets();
         myWorld.player.sprite.draw(game.sb);
         game.sb.end();
         myWorld.hud.draw();

@@ -29,6 +29,11 @@ public class DeceptaBoss extends Fighter {
 
     }
 
+    @Override
+    public void move(float delta) {
+
+    }
+
     private void die() {
         //animate death
         world.hud.addScore(value);

@@ -7,15 +7,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.blasters.game.SuperPlanetBlasters;
+import com.blasters.game.scenes.Hud;
 import com.blasters.game.screens.GameScreen;
-import com.blasters.game.sprites.BlueFighter;
 import com.blasters.game.sprites.Bullet;
 import com.blasters.game.sprites.Fighter;
 import com.blasters.game.sprites.FighterGenerator;
 import com.blasters.game.sprites.HeroShip;
 import com.blasters.game.sprites.Power;
 import com.blasters.game.sprites.PowerUpGenerator;
-import com.blasters.game.sprites.RedFighter;
 
 import java.util.Random;
 
@@ -33,6 +32,7 @@ public class GameWorld {
      * atlas.
      */
     private TextureAtlas atlas;
+    private TextureAtlas playerAtlas;
     private int level; //what level we are on
     public Array<Fighter> enemies; //An array that holds all the enemies on the screen
     public Array<Bullet> bullets; //Holds all bullets fired by the main ship
@@ -45,10 +45,12 @@ public class GameWorld {
     public Texture playerTexture;
     public FighterGenerator fgen;
     public PowerUpGenerator pgen;
+    public Hud hud;
 
     public GameWorld(GameScreen screen) {
         this.screen = screen;
-        atlas = new TextureAtlas("ships_and_bullets.pack");
+        atlas = new TextureAtlas("generalAtlas.pack");
+        playerAtlas = new TextureAtlas("PlayerAtlas.pack");
         // we might want to make two
         player = new HeroShip(this);
         enemies  = new DelayedRemovalArray<Fighter>();
@@ -60,6 +62,7 @@ public class GameWorld {
 
         fgen = new FighterGenerator();
         pgen = new PowerUpGenerator();
+        hud = new Hud(screen.game.sb);
     }
 
     /* update
@@ -144,5 +147,8 @@ public class GameWorld {
      */
     public TextureAtlas getAtlas() {
         return atlas;
+    }
+    public TextureAtlas getPlayerAtlas() {
+        return playerAtlas;
     }
 }
