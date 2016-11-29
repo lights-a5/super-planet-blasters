@@ -39,6 +39,7 @@ public class GameRenderer {
         drawPowers();
         myWorld.player.sprite.draw(game.sb);
         game.sb.end();
+        myWorld.hud.draw();
     }
 
     /*
@@ -46,7 +47,7 @@ public class GameRenderer {
      * draws the background texture that is bg in the world class.
      */
     private void drawBackground() {
-        game.sb.draw(myWorld.bg, 0, 0, 0, myWorld.rateOfBackground, SuperPlanetBlasters.WIDTH, SuperPlanetBlasters.HEIGHT);
+        game.sb.draw(myWorld.bg, 0, 0, 0, myWorld.rateOfBackground, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         myWorld.rateOfBackground -= 5;
     }
 

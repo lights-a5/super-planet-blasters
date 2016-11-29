@@ -5,7 +5,6 @@ package com.blasters.game.screens;
  * modified most recent
  */
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -14,11 +13,10 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.blasters.game.SuperPlanetBlasters;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 
 
-public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
+public class MenuScreen implements Screen, InputProcessor {
 
     public SuperPlanetBlasters game;
     private Music menuMusic;
@@ -27,8 +25,6 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
     private Texture bg;
     private Texture logo;
     private Texture extras;
-
-    private InputListener input;
 
     private Sprite start;
     private Sprite soundOn;
@@ -79,25 +75,17 @@ public class MenuScreen implements Screen, InputProcessor,ApplicationListener {
         game.sb.draw(logo, (Gdx.graphics.getWidth() / 2 - 240), (Gdx.graphics.getHeight() / 2 -100),500, 500);
         game.sb.draw(extras, (Gdx.graphics.getWidth() /2 - 280), (Gdx.graphics.getHeight() / 14 -12), 130, 130 );
         game.sb.end();
-        Gdx.input.setInputProcessor(this);
+        Gdx.input.setInputProcessor(this);//
 
     }
 
 
-    @Override
-    public void create() {
 
-    }
 
     @Override
     public void resize(int width, int height) {
 
 
-
-    }
-
-    @Override
-    public void render() {
 
     }
 
