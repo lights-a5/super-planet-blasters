@@ -41,7 +41,7 @@ public class YellowPower extends Power{
 
     @Override
     public void move(float delta) {
-        velocity.add(0, -500);
+        velocity.add(0, -400);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
     }
