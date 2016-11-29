@@ -1,7 +1,7 @@
 package com.blasters.game.screens;
 
 /**
- * Created by Adam on 11/18/2016.
+ * updated by Adam on 11/28/2016.
  */
 
 import com.badlogic.gdx.Gdx;
@@ -44,6 +44,8 @@ public class LoadingScreen implements Screen {
         game.assetManager.load("bolt.mp3", Music.class);
         game.assetManager.load("MOI.mp3", Music.class);
         game.assetManager.load("plasma2.wav", Sound.class);
+        game.assetManager.load("Ship_die.wav", Sound.class);
+        game.assetManager.load("needler.wav", Sound.class);
         game.assetManager.load("generalAtlas.pack", TextureAtlas.class);
         game.assetManager.load("PlayerAtlas.pack", TextureAtlas.class);
         game.assetManager.load("menuBg.jpg", Texture.class);
