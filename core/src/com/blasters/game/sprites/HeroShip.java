@@ -22,6 +22,10 @@ public class HeroShip extends Fighter {
     private TextureRegion greenHero;
     public boolean invincible;
     private boolean isDead;
+    public boolean bulletMid;
+    public boolean bulletSides;
+    public int shields;
+    public boolean faster;
 
     public enum State{ BLUE, GREEN, ORANGE, RED}
     State colorState;
@@ -43,6 +47,10 @@ public class HeroShip extends Fighter {
         isDead = false;
         sprite.setPosition(100, 100);
         sprite.setScale(.3f,.3f);
+        bulletMid = true;
+        bulletSides = false;
+        shields = 0;
+        faster = false;
     }
     public void changeColor() {
         switch (colorState) {
@@ -78,7 +86,7 @@ public class HeroShip extends Fighter {
         else {
             for(Fighter enemy : world.enemies) {
                 if (sprite.getBoundingRectangle().overlaps(enemy.sprite.getBoundingRectangle()) && !invincible) {
-                    health--;
+                    adjustHealth();
                     if (health == 0) {
                         die();
                     } else {
@@ -110,4 +118,12 @@ public class HeroShip extends Fighter {
     public void move(float delta){
 
     }
+    public void adjustHealth(){
+        if(shields > 0){
+            shields--;
+        }
+        else
+            health--;
+    }
+
 }

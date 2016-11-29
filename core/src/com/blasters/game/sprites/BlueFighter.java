@@ -3,6 +3,7 @@ package com.blasters.game.sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.gameworld.GameWorld;
 
 /**
@@ -21,12 +22,14 @@ public class BlueFighter extends Fighter {
         health  = 4;
         fighter = world.getAtlas().findRegion("bansheeShip");
         sprite = new Sprite(fighter);
+
+        x = random.nextInt(SuperPlanetBlasters.WIDTH - sprite.getRegionWidth());
+        y = random.nextInt(SuperPlanetBlasters.HEIGHT) + SuperPlanetBlasters.HEIGHT ;
+        sprite.setPosition(x, y);
     }
 
     public void update(float delta) {
-        velocity.add(0, -500);
-        velocity.scl(delta);
-        sprite.translate(velocity.x, velocity.y);
+        move(delta);
 
         if (sprite.getY() + sprite.getHeight() < 0) {
             world.enemies.removeValue(this, true);
@@ -45,6 +48,13 @@ public class BlueFighter extends Fighter {
 
             }
         }
+    }
+
+    @Override
+    public void move(float delta) {
+        velocity.add(0, -500);
+        velocity.scl(delta);
+        sprite.translate(velocity.x, velocity.y);
     }
 
     private void die() {

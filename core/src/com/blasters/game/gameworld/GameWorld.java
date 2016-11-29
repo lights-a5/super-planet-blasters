@@ -11,7 +11,10 @@ import com.blasters.game.screens.GameScreen;
 import com.blasters.game.sprites.BlueFighter;
 import com.blasters.game.sprites.Bullet;
 import com.blasters.game.sprites.Fighter;
+import com.blasters.game.sprites.FighterGenerator;
 import com.blasters.game.sprites.HeroShip;
+import com.blasters.game.sprites.Power;
+import com.blasters.game.sprites.PowerUpGenerator;
 import com.blasters.game.sprites.RedFighter;
 
 import java.util.Random;
@@ -33,12 +36,15 @@ public class GameWorld {
     private int level; //what level we are on
     public Array<Fighter> enemies; //An array that holds all the enemies on the screen
     public Array<Bullet> bullets; //Holds all bullets fired by the main ship
+    public Array<Power> powerups;
     Texture bg; //background texture
     int rateOfBackground; //NOT SURE WHAT THIS IS FOR. EXPLAIN PLZ TYLER?
     private static final float BULLETDELAY = .15f; //Delay between bullets. Increase for more bullets.
     private float currentDelay;
     public GameScreen screen;
     public Texture playerTexture;
+    public FighterGenerator fgen;
+    public PowerUpGenerator pgen;
 
     public GameWorld(GameScreen screen) {
         this.screen = screen;
@@ -47,9 +53,13 @@ public class GameWorld {
         player = new HeroShip(this);
         enemies  = new DelayedRemovalArray<Fighter>();
         bullets = new DelayedRemovalArray<Bullet>();
+        powerups = new DelayedRemovalArray<Power>();
         bg = new Texture("black.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat); //Not entirely sure what this is
         currentDelay = 0;
+
+        fgen = new FighterGenerator();
+        pgen = new PowerUpGenerator();
     }
 
     /* update
@@ -64,6 +74,9 @@ public class GameWorld {
         for (Bullet bullet : bullets) { //for every bullet
             bullet.update(delta);       //update it
         }
+        for(Power power : powerups){
+            power.update(delta);
+        }
         player.update(delta);           //then update the player
     }
 
@@ -77,12 +90,23 @@ public class GameWorld {
             spawnEnemies();                         //spawn enemies
         }
         if(currentDelay >= BULLETDELAY) {
-
-            Bullet temp = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.29f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
-            bullets.add(temp);
-            Bullet two = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.99f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
-            bullets.add(two);
-            currentDelay = 0f;
+            if(player.bulletMid){
+                Bullet one = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.6f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
+                bullets.add(one);
+            }
+            if(player.bulletSides) {
+                Bullet two = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.29f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f));
+                bullets.add(two);
+                Bullet three = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.99f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f));
+                bullets.add(three);
+            }
+            if(player.faster) {
+                currentDelay = 1f;
+            }
+            else
+            {
+                currentDelay = 0f;
+            }
         }
         else {
             currentDelay += delta;
@@ -98,36 +122,13 @@ public class GameWorld {
         int spawnValue = 0;
         enemies = new DelayedRemovalArray<Fighter>();
         while (spawnValue < level) {
-            Fighter fighter = spawnAnEnemy(spawnValue);
+            Fighter fighter = fgen.generate(level, spawnValue, this);
             spawnValue += fighter.value;
             enemies.add(fighter);
         }
+        powerups.add(pgen.generate(this));
     }
 
-    /* Fighter spawnAnEnemy
-     * spawnEnemies calls this function multiple times. This is how one enemy is spawned. Every
-     * iteration if the spawnValue is 5 less than the level, there is a 50% chance of spawning
-     * a blue ship.
-     */
-    private Fighter spawnAnEnemy(int spawnValue) {
-        Fighter returnFighter;
-        Random random = new Random();
-        if (level - spawnValue >= 5) {
-            if (random.nextInt() % 2 == 0) {
-                returnFighter = new BlueFighter(this);
-            }
-            else {
-                returnFighter = new RedFighter(this);
-            }
-        }
-        else {
-            returnFighter = new RedFighter(this);
-        }
-        float x = random.nextInt(Gdx.graphics.getWidth() - returnFighter.sprite.getRegionWidth());
-        float y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
-        returnFighter.sprite.setPosition(x, y);
-        return returnFighter;
-    }
 
     /*
      * dispose
