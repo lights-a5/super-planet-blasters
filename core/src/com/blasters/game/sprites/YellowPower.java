@@ -21,8 +21,8 @@ public class YellowPower extends Power{
     protected void definePower() {
         TextureRegion powerup = world.getAtlas().findRegion("powerupYellow_bolt");
         sprite = new Sprite(powerup);
-        x = random.nextInt(SuperPlanetBlasters.WIDTH - sprite.getRegionWidth());
-        y = random.nextInt(SuperPlanetBlasters.HEIGHT) + SuperPlanetBlasters.HEIGHT ;
+        x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
+        y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
         sprite.setPosition(x, y);
 
     }

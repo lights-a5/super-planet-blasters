@@ -21,6 +21,9 @@ public class bansheeShip extends Fighter {
         health  = 10;
         fighter = world.getAtlas().findRegion("bansheeShip");
         sprite = new Sprite(fighter);
+        x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
+        y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
+        sprite.setPosition(x, y);
     }
 
     public void update(float delta) {

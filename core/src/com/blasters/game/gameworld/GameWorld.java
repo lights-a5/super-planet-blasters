@@ -94,13 +94,13 @@ public class GameWorld {
         }
         if(currentDelay >= BULLETDELAY) {
             if(player.bulletMid){
-                Bullet one = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.6f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
+                Bullet one = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.1f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
                 bullets.add(one);
             }
             if(player.bulletSides) {
-                Bullet two = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.29f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f));
+                Bullet two = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 1.79f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f));
                 bullets.add(two);
-                Bullet three = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.99f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f));
+                Bullet three = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.49f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f));
                 bullets.add(three);
             }
             if(player.faster) {
