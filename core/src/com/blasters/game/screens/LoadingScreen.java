@@ -43,7 +43,6 @@ public class LoadingScreen implements Screen {
     private void queueAssets() {
         game.assetManager.load("bolt.mp3", Music.class);
         game.assetManager.load("MOI.mp3", Music.class);
-        game.assetManager.load("plasma2.wav", Sound.class);
         game.assetManager.load("Ship_die.wav", Sound.class);
         game.assetManager.load("needler.wav", Sound.class);
         game.assetManager.load("generalAtlas.pack", TextureAtlas.class);
