@@ -43,7 +43,7 @@ public class HeroShip extends Fighter {
         timeInvincible = 0;
         isDead = false;
         sprite.setPosition(100, 100);
-        sprite.setScale(.3f,.3f);
+        sprite.setScale(((float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight()) / 2);
         bulletMid = true;
         bulletSides = false;
         shields = 0;
