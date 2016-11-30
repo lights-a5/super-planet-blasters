@@ -71,6 +71,10 @@ public class GameRenderer {
         }
     }
 
+    private void drawYellow(){
+
+    }
+
     /*
      * dispose
      * When we move the spritebatch to the main class, we honestly won't need this function anymore.
