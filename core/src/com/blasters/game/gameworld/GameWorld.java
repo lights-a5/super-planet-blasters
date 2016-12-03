@@ -10,6 +10,7 @@ import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.scenes.Hud;
 import com.blasters.game.screens.GameScreen;
 import com.blasters.game.sprites.Bullet;
+import com.blasters.game.sprites.EnemyBullet;
 import com.blasters.game.sprites.Fighter;
 import com.blasters.game.sprites.FighterGenerator;
 import com.blasters.game.sprites.HeroShip;
@@ -33,18 +34,20 @@ public class GameWorld {
      */
     private TextureAtlas atlas;
     private TextureAtlas playerAtlas;
+
     private int level; //what level we are on
+
     public Array<Fighter> enemies; //An array that holds all the enemies on the screen
     public Array<Bullet> bullets; //Holds all bullets fired by the main ship
+    public Array<EnemyBullet> enemyBullets;
     public Array<Power> powerups;
     Texture bg; //background texture
     int rateOfBackground; //NOT SURE WHAT THIS IS FOR. EXPLAIN PLZ TYLER?
     private static final float BULLETDELAY = .15f; //Delay between bullets. Increase for more bullets.
     private float currentDelay;
-    public GameScreen screen;
-    public Texture playerTexture;
-    public FighterGenerator fgen;
-    public PowerUpGenerator pgen;
+    private GameScreen screen;
+    private FighterGenerator fgen;
+    private PowerUpGenerator pgen;
     public Hud hud;
 
     public GameWorld(GameScreen screen) {
@@ -55,6 +58,7 @@ public class GameWorld {
         player = new HeroShip(this);
         enemies  = new DelayedRemovalArray<Fighter>();
         bullets = new DelayedRemovalArray<Bullet>();
+        enemyBullets = new DelayedRemovalArray<EnemyBullet>();
         powerups = new DelayedRemovalArray<Power>();
         bg = new Texture("black.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat); //Not entirely sure what this is
@@ -79,6 +83,9 @@ public class GameWorld {
         }
         for(Power power : powerups){
             power.update(delta);
+        }
+        for (EnemyBullet bullet : enemyBullets) {
+            bullet.update(delta);
         }
         player.update(delta);           //then update the player
     }

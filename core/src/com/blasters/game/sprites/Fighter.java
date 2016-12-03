@@ -10,21 +10,24 @@ import com.blasters.game.screens.GameScreen;
 
 
 /**
- * Created by SHELIVES on 11/2/2016.
+ * Default fighter class
  */
 
 public abstract class Fighter{
     public int value;
     public Vector2 velocity;
     protected GameWorld world;
-    protected int health;
+    int health;
     public Sprite sprite;
     Random random;
     float x;
     float y;
+    float bulletDelay;
+    float currentDelay;
     
-    public Fighter(GameWorld world) {
+    Fighter(GameWorld world) {
         this.world = world;
+        currentDelay = 0f;
         velocity = new Vector2(0,0);
         random = new Random();
         defineFighter();

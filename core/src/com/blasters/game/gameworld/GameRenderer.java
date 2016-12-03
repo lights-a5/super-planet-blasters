@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.screens.GameScreen;
 import com.blasters.game.sprites.Bullet;
+import com.blasters.game.sprites.EnemyBullet;
 import com.blasters.game.sprites.Fighter;
 import com.blasters.game.sprites.Power;
 
@@ -68,6 +69,9 @@ public class GameRenderer {
     private void drawBullets() {
         for (Bullet bullet : myWorld.bullets) {
             bullet.laserSprite.draw(game.sb);
+        }
+        for (EnemyBullet bullet : myWorld.enemyBullets) {
+            bullet.sprite.draw(game.sb);
         }
     }
 
