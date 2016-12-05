@@ -49,7 +49,7 @@ public class HeroShip extends Fighter {
         shields = 0;
         faster = 0;
     }
-    public void changeColor() {
+   /* public void changeColor() {
         switch (colorState) {
             case BLUE:
                 sprite.setRegion(redHero);
@@ -69,7 +69,7 @@ public class HeroShip extends Fighter {
                 colorState = State.BLUE;
                 break;
         }
-    }
+    }*/
 
     public void update(float delta) {
         checkInput();

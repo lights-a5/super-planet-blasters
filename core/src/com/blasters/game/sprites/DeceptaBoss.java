@@ -26,6 +26,13 @@ public class DeceptaBoss extends Fighter {
 
 
     public void update(float delta) {
+        //(bossSprite.getOriginY() > )
+        //move to the top of the screen
+        velocity.add(0, -91);
+        velocity.scl(delta);
+        // once it gets to a certain point
+        // move back and forth
+        // fire in patterns
 
     }
 

@@ -1,60 +1,95 @@
 PlayerAtlas.png
-size: 1024, 1024
+size: 1911, 622
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 PlanetBlaster
   rotate: false
   xy: 0, 0
-  size: 274, 311
-  orig: 274, 311
+  size: 273, 311
+  orig: 273, 311
   offset: 0, 0
   index: -1
-PlanetBlaster_GoldWings
+PlanetBlaster_BR1
   rotate: false
   xy: 273, 0
   size: 273, 311
   orig: 273, 311
   offset: 0, 0
   index: -1
-PlanetBlaster_GunV1
+PlanetBlaster_BR2
   rotate: false
   xy: 546, 0
   size: 273, 311
   orig: 273, 311
   offset: 0, 0
   index: -1
+PlanetBlaster_Damage
+  rotate: false
+  xy: 819, 0
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_GoldWings
+  rotate: false
+  xy: 1092, 0
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_GunV1
+  rotate: false
+  xy: 1365, 0
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
 PlanetBlaster_GunV2
   rotate: false
-  xy: 0, 311
+  xy: 1638, 0
   size: 273, 311
   orig: 273, 311
   offset: 0, 0
   index: -1
 PlanetBlaster_Shield1
   rotate: false
+  xy: 0, 311
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_YB
+  rotate: false
   xy: 273, 311
   size: 273, 311
   orig: 273, 311
   offset: 0, 0
   index: -1
-PlanetBlaster_Shield2
+PlanetBlaster_YBR1
   rotate: false
   xy: 546, 311
   size: 273, 311
   orig: 273, 311
   offset: 0, 0
   index: -1
-PlanetBlaster_Shield3
+PlanetBlaster_YBR2
   rotate: false
-  xy: 0, 622
+  xy: 819, 311
   size: 273, 311
   orig: 273, 311
   offset: 0, 0
   index: -1
-PlanetBlasterDamage
+PlanetBlaster_YR1
   rotate: false
-  xy: 273, 622
+  xy: 1092, 311
+  size: 273, 311
+  orig: 273, 311
+  offset: 0, 0
+  index: -1
+PlanetBlaster_YR2
+  rotate: false
+  xy: 1365, 311
   size: 273, 311
   orig: 273, 311
   offset: 0, 0
