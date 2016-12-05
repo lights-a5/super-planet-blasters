@@ -47,7 +47,9 @@ public class YellowPower extends Power{
     }
 
     public void die(){
-        world.player.faster = true;
+        if(world.player.faster < .1){
+            world.player.faster += .034;
+        }
         world.powerups.removeValue(this, true);
     }
 

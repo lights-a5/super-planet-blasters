@@ -103,13 +103,8 @@ public class GameWorld {
                 Bullet three = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.49f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f));
                 bullets.add(three);
             }
-            if(player.faster) {
-                currentDelay = 1f;
-            }
-            else
-            {
-                currentDelay = 0f;
-            }
+
+            currentDelay = player.faster;
         }
         else {
             currentDelay += delta;

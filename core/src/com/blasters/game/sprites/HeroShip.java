@@ -25,7 +25,7 @@ public class HeroShip extends Fighter {
     public boolean bulletMid;
     public boolean bulletSides;
     public int shields;
-    public boolean faster;
+    public float faster;
 
     public enum State{ BLUE, GREEN, ORANGE, RED}
     State colorState;
@@ -47,7 +47,7 @@ public class HeroShip extends Fighter {
         bulletMid = true;
         bulletSides = false;
         shields = 0;
-        faster = false;
+        faster = 0;
     }
     public void changeColor() {
         switch (colorState) {

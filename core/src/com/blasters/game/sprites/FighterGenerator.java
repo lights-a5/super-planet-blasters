@@ -18,8 +18,11 @@ public class FighterGenerator {
 
     public Fighter generate(int level, int spawnValue, GameWorld game) {
         Random random = new Random();
-        if (level - spawnValue >= 5 && random.nextInt() % 2 == 0) {
+        int temp = random.nextInt();
+        if (level - spawnValue >= 3 && temp % 3 == 0) {
             return new bansheeShip(game);
+        }else if(level - spawnValue >= 6 && temp % 3 == 1) {
+            return new DordraxShip(game);
         } else {
             return new morcegoShip(game);
         }
