@@ -24,6 +24,7 @@ public class bansheeShip extends Fighter {
         x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
         y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
         sprite.setPosition(x, y);
+        bulletDelay = 1.2f;
     }
 
     public void update(float delta) {
@@ -48,11 +49,21 @@ public class bansheeShip extends Fighter {
 
             }
         }
+        currentDelay += delta;
+        if (currentDelay >= bulletDelay) {
+            currentDelay = 0;
+            fireBullet();
+        }
+
     }
 
     @Override
     public void move(float delta) {
 
+    }
+
+    private void fireBullet() {
+        world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.HOMING);
     }
 
     private void die() {

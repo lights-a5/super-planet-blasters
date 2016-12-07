@@ -40,9 +40,9 @@ public class BluePower extends Power {
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
     }
-    public void die(){
+    private void die(){
         //Shields user and ideally activate blue section and draw shield
-        world.player.shields++;
+        world.player.addShield();
         world.powerups.removeValue(this, true);
     }
 }
