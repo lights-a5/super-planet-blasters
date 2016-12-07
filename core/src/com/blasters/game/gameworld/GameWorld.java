@@ -11,6 +11,7 @@ import com.blasters.game.scenes.Hud;
 import com.blasters.game.screens.GameScreen;
 import com.blasters.game.sprites.Bullet;
 import com.blasters.game.sprites.EnemyBullet;
+import com.blasters.game.sprites.EnemyBulletGenerator;
 import com.blasters.game.sprites.Fighter;
 import com.blasters.game.sprites.FighterGenerator;
 import com.blasters.game.sprites.HeroShip;
@@ -41,17 +42,20 @@ public class GameWorld {
     public Array<Bullet> bullets; //Holds all bullets fired by the main ship
     public Array<EnemyBullet> enemyBullets;
     public Array<Power> powerups;
+
     Texture bg; //background texture
     int rateOfBackground; //NOT SURE WHAT THIS IS FOR. EXPLAIN PLZ TYLER?
     private static final float BULLETDELAY = .15f; //Delay between bullets. Increase for more bullets.
+
     private float currentDelay;
-    private GameScreen screen;
+    private SuperPlanetBlasters game;
     private FighterGenerator fgen;
     private PowerUpGenerator pgen;
+    public EnemyBulletGenerator bgen;
     public Hud hud;
 
-    public GameWorld(GameScreen screen) {
-        this.screen = screen;
+    public GameWorld(SuperPlanetBlasters game) {
+        this.game = game;
         atlas = new TextureAtlas("generalAtlas.pack");
         playerAtlas = new TextureAtlas("PlayerAtlas.pack");
         // we might want to make two
@@ -63,10 +67,10 @@ public class GameWorld {
         bg = new Texture("black.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat); //Not entirely sure what this is
         currentDelay = 0;
-
+        bgen = new EnemyBulletGenerator(this);
         fgen = new FighterGenerator();
         pgen = new PowerUpGenerator();
-        hud = new Hud(screen.game.sb);
+        hud = new Hud(this, game.sb);
     }
 
     /* update
@@ -146,6 +150,7 @@ public class GameWorld {
      */
     public void dispose() {
         atlas.dispose();
+        playerAtlas.dispose();
     }
 
     /*

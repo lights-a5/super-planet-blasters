@@ -17,7 +17,7 @@ public abstract class Fighter{
     public int value;
     public Vector2 velocity;
     protected GameWorld world;
-    int health;
+    public int health;
     public Sprite sprite;
     Random random;
     float x;

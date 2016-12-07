@@ -23,7 +23,7 @@ public class morcegoShip extends Fighter {
         x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
         y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
         sprite.setPosition(x, y);
-        bulletDelay = 2f;
+        bulletDelay = 1.2f;
     }
 
     public void update(float delta) {
@@ -53,8 +53,7 @@ public class morcegoShip extends Fighter {
     }
 
     private void fireBullet() {
-        world.enemyBullets.add(new EnemyBullet(world, sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(),
-                sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY() - 600));
+        world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.FORWARD);
     }
 
     @Override

@@ -14,7 +14,7 @@ import com.blasters.game.gameworld.GameWorld;
  */
 
 public class HeroShip extends Fighter {
-    private final float INVINCIBLETIME = 8f;
+    private final float INVINCIBLETIME = 2f;
     private float timeInvincible;
     private boolean invincible;
     private boolean isDead;
@@ -22,6 +22,7 @@ public class HeroShip extends Fighter {
     public boolean bulletSides;
     private int shields;
     public boolean faster;
+    public int maxHP;
 
     private enum State{ BLUE, GREEN, ORANGE, RED}
     State colorState;
@@ -33,7 +34,8 @@ public class HeroShip extends Fighter {
     public void defineFighter() {
         value = 999999;
         sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster")));
-        health = 2;
+        maxHP = 5;
+        health = maxHP;
         invincible = false;
         timeInvincible = 0;
         isDead = false;
@@ -98,6 +100,8 @@ public class HeroShip extends Fighter {
     }
 
     private void checkInput() {
+        Gdx.app.log("Player Health: ", Integer.toString(health));
+        Gdx.app.log("Invincible: ", Boolean.toString(invincible));
         if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             sprite.setPosition(Gdx.input.getX() - sprite.getWidth() / 2,
                     Gdx.graphics.getHeight() - Gdx.input.getY() - sprite.getHeight() / 2);
