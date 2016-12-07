@@ -48,7 +48,7 @@ public class DordraxShip extends Fighter {
 
     @Override
     public void move(float delta) {
-        velocity.add(0, -91);
+        velocity.add(0, -190);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
     }

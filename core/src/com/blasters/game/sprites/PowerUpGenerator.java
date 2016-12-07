@@ -26,4 +26,5 @@ public class PowerUpGenerator {
             return new YellowPower(game);
         }
     }
+
 }

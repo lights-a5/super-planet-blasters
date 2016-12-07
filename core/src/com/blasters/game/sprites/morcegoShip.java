@@ -48,12 +48,13 @@ public class morcegoShip extends Fighter {
 
     @Override
     public void move(float delta) {
-        velocity.add(0, -500);
+        velocity.add(0, -250);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
     }
 
     private void die() {
+        world.powerups.add(new GreenPower(world, sprite.getX(), sprite.getY()));
         world.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }

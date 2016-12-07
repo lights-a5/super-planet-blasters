@@ -46,10 +46,14 @@ public class RedPower extends Power {
         if(world.player.bulletMid && !world.player.bulletSides){
             world.player.bulletMid = false;
             world.player.bulletSides = true;
+            world.player.red = true;
         }
         else if(!world.player.bulletMid && world.player.bulletSides){
             world.player.bulletMid = true;
+            world.player.red = false;
+            world.player.red2 = true;
         }
+        world.player.determineColor();
         world.powerups.removeValue(this, true);
     }
 }

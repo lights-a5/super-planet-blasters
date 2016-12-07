@@ -2,6 +2,7 @@ package com.blasters.game.sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.blasters.game.gameworld.GameWorld;
@@ -26,6 +27,10 @@ public class HeroShip extends Fighter {
     public boolean bulletSides;
     public int shields;
     public float faster;
+    public boolean blue;
+    public boolean yellow;
+    public boolean red;
+    public boolean red2;
 
     public enum State{ BLUE, GREEN, ORANGE, RED}
     State colorState;
@@ -48,6 +53,10 @@ public class HeroShip extends Fighter {
         bulletSides = false;
         shields = 0;
         faster = 0;
+        blue = false;
+        yellow = false;
+        red = false;
+        red2 = false;
     }
    /* public void changeColor() {
         switch (colorState) {
@@ -123,4 +132,59 @@ public class HeroShip extends Fighter {
             health--;
     }
 
+    public void initializeSprites(){
+
+    }
+
+    public void determineColor(){
+        float x = sprite.getX();
+        float y = sprite.getY();
+        if(blue){
+            if(yellow){
+                if(red){
+                    sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_YBR1")));
+                }
+                else if(red2){
+                    sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_YBR2")));
+                }
+                else{
+                    sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_YB"))) ;
+                }
+            }
+            else{
+                if(red){
+                    sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_BR1"))) ;
+                }
+                else if(red2){
+                    sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_BR2")));
+                }
+                else{
+                    sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_Shield1")));
+                }
+            }
+        }
+        else if(yellow){
+            if(red){
+                sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_YR1")));
+            }
+            else if(red2){
+                sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_YR2")));
+            }
+            else{
+                sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_GoldWings")));
+            }
+        }
+        else if(red){
+            sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_GunV1")));
+        }
+        else if(red2){
+            sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster_GunV2")));
+        }
+        else{
+            sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster")));
+        }
+
+        sprite.setScale(((float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight()) / 2);
+        sprite.setPosition(x, y);
+    }
 }

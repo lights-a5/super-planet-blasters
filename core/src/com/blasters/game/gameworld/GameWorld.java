@@ -56,7 +56,7 @@ public class GameWorld {
         enemies  = new DelayedRemovalArray<Fighter>();
         bullets = new DelayedRemovalArray<Bullet>();
         powerups = new DelayedRemovalArray<Power>();
-        bg = new Texture("black.png");
+        bg = new Texture("starBG.JPG");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat); //Not entirely sure what this is
         currentDelay = 0;
 
