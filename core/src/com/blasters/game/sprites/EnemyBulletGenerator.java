@@ -17,7 +17,8 @@ public class EnemyBulletGenerator {
         FORWARD,
         HOMING,
         DIR8,
-        DIR16
+        DIR16,
+        DECBOSS
     }
 
     public EnemyBulletGenerator(GameWorld world) {
@@ -42,6 +43,9 @@ public class EnemyBulletGenerator {
                 break;
             case DIR16:
                 dir16();
+                break;
+            case DECBOSS:
+                deceptaBoss();
                 break;
             default:
                 break;
@@ -86,5 +90,20 @@ public class EnemyBulletGenerator {
         world.enemyBullets.add(new EnemyBullet(world, srcX, srcY, srcX + 150, srcY - 300));
         world.enemyBullets.add(new EnemyBullet(world, srcX, srcY, srcX + 300, srcY - 150));
         world.enemyBullets.add(new EnemyBullet(world, srcX, srcY, srcX + 300, srcY + 150));
+    }
+
+    private void deceptaBoss(){ //deceptaBoss
+        //right
+        world.enemyBullets.add(new EnemyBullet(world, srcX+110, srcY+110, srcX + 300, srcY - 400));
+        world.enemyBullets.add(new EnemyBullet(world, srcX+110, srcY+110, srcX + 150, srcY - 360));
+        //left
+        world.enemyBullets.add(new EnemyBullet(world, srcX-40, srcY+110, srcX - 300, srcY - 400));
+        world.enemyBullets.add(new EnemyBullet(world, srcX-30, srcY+110, srcX - 145, srcY - 360));
+        //middle
+        world.enemyBullets.add(new EnemyBullet(world, srcX+32, srcY+100, srcX -30, srcY - 400));
+        world.enemyBullets.add(new EnemyBullet(world, srcX+50, srcY+100, srcX +30, srcY - 360));
+
+
+
     }
 }

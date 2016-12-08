@@ -45,7 +45,7 @@ public class GameWorld {
 
     Texture bg; //background texture
     int rateOfBackground; //NOT SURE WHAT THIS IS FOR. EXPLAIN PLZ TYLER?
-    private static final float BULLETDELAY = .15f; //Delay between bullets. Increase for more bullets.
+    private float BULLETDELAY = .198f; //Delay between bullets. Increase for less bullets.
 
     private float currentDelay;
     private SuperPlanetBlasters game;
@@ -115,7 +115,8 @@ public class GameWorld {
                 bullets.add(three);
             }
             if(player.faster) {
-                currentDelay = 1f;
+                BULLETDELAY = .089f;
+                currentDelay =0f;
             }
             else
             {

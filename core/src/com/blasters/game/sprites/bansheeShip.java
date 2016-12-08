@@ -19,6 +19,7 @@ public class bansheeShip extends Fighter {
     public void defineFighter() {
         value = 2;
         health  = 10;
+        speed = -100;
         fighter = world.getAtlas().findRegion("bansheeShip");
         sprite = new Sprite(fighter);
         x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
@@ -28,9 +29,7 @@ public class bansheeShip extends Fighter {
     }
 
     public void update(float delta) {
-        velocity.add(0, -100);
-        velocity.scl(delta);
-        sprite.translate(velocity.x, velocity.y);
+        move(delta);
 
         if (sprite.getY() + sprite.getHeight() < 0) {
             world.enemies.removeValue(this, true);
@@ -59,6 +58,9 @@ public class bansheeShip extends Fighter {
 
     @Override
     public void move(float delta) {
+        velocity.add(0, speed);
+        velocity.scl(delta);
+        sprite.translate(velocity.x, velocity.y);
 
     }
 

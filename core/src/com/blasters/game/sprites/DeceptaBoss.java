@@ -12,25 +12,32 @@ import com.blasters.game.gameworld.GameWorld;
 public class DeceptaBoss extends Fighter {
 
     boolean moveRight;
+    boolean isShooting;
+    float shootDelay;
+    float shootPauseTime;
 
     public DeceptaBoss(GameWorld world) {
         super(world);
     }
 
     protected void defineFighter() {
+        shootPauseTime = 0;
+        isShooting = false;
         moveRight = false;
         value = 100;
-        health  = 600;
+        health  = 570;
         TextureRegion fighter = world.getAtlas().findRegion("deceptaBoss"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
-        sprite.setPosition(300, 900);
+        sprite.setPosition(250, 900);
+        bulletDelay = .4f;
+        shootDelay = 4.0f;
         //sprite.setScale(.5f, .5f);
     }
 
 
     public void update(float delta) {
         Gdx.app.log("spriteOriginY: ", Float.toString(sprite.getX()));
-        if (sprite.getY() > Gdx.graphics.getHeight() / 2) {
+        if (sprite.getY() > Gdx.graphics.getHeight() * .6) {
             //move to the top of the screen
             velocity.add(0, -91);
         } else {
@@ -63,6 +70,29 @@ public class DeceptaBoss extends Fighter {
             }
 
         }
+        shootPauseTime += delta;
+        if(shootPauseTime >= shootDelay ) {
+            isShooting = true;
+            shootPauseTime = 0;
+        }
+
+        if(isShooting) { //please take a look at my logic, i was trying to make it pause after a bit
+            currentDelay += delta;
+            if (currentDelay >= bulletDelay) {
+                currentDelay = 0;
+                fireBullet();
+            }
+            if(shootPauseTime >= shootDelay*2){
+                isShooting = false;
+                shootPauseTime = 0;
+            }
+        }
+
+
+    }
+
+    private void fireBullet() {
+        world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.DECBOSS);
     }
 
     @Override

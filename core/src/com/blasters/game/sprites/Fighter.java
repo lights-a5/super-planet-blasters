@@ -18,6 +18,7 @@ public abstract class Fighter{
     public Vector2 velocity;
     protected GameWorld world;
     public int health;
+    float speed; //the speed it travels downward
     public Sprite sprite;
     Random random;
     float x;

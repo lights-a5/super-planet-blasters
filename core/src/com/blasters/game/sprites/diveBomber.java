@@ -5,25 +5,32 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.blasters.game.gameworld.GameWorld;
 
+import java.util.Random;
+
 /**
- * The basic red fighter.
+ * Created by Adam on 12/8/2016.
  */
 
-public class morcegoShip extends Fighter {
-    public morcegoShip(GameWorld world) {
+public class diveBomber extends Fighter {
+    public diveBomber(GameWorld world) {
         super(world);
     }
 
+    //Random randomOffset = new Random();
+   // float angle;
+
     public void defineFighter() {
         value = 1;
-        health  = 7;
-        TextureRegion fighter = world.getAtlas().findRegion("morcegoShip"); //updated to reflect new atlas
+        health  = 1;
+        speed = -480;
+        //angle = randomOffset.nextFloat();
+        TextureRegion fighter = world.getAtlas().findRegion("draxbomberShip"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
-        sprite.setScale(.5f, .5f);
         x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
         y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
         sprite.setPosition(x, y);
-        bulletDelay = 1.2f;
+        sprite.setScale(.5f, .5f);
+
     }
 
     public void update(float delta) {
@@ -45,22 +52,19 @@ public class morcegoShip extends Fighter {
                 }
             }
         }
-        currentDelay += delta;
-        if (currentDelay >= bulletDelay) {
-            currentDelay = 0f;
-            fireBullet();
-        }
-    }
 
-    private void fireBullet() {
-        world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.FORWARD);
     }
 
     @Override
     public void move(float delta) {
-        velocity.add(0, -200);
+        velocity.add(0, speed);
         velocity.scl(delta);
+
         sprite.translate(velocity.x, velocity.y);
+    }
+
+    private void fireBullet() {
+        //will not fire just fly toward player
     }
 
     private void die() {

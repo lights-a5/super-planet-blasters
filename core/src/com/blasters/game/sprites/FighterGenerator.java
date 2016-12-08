@@ -1,6 +1,5 @@
 package com.blasters.game.sprites;
 
-import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.gameworld.GameWorld;
 
 import java.util.Random;
@@ -29,8 +28,11 @@ public class FighterGenerator {
         else if(level - spawnValue >= 7 && random.nextInt() % 2 == 0){
             return new DordraxShip(game);
         }
+        else if(level - spawnValue >= 1 && random.nextInt() % 2 == 0){
+            return new batShip(game);
+        }
         else{
-            return new morcegoShip(game);
+            return new diveBomber(game);
         }
 
 

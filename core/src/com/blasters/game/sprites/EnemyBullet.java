@@ -5,6 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.blasters.game.gameworld.GameWorld;
 
+import static com.badlogic.gdx.math.MathUtils.atan2;
+import static com.badlogic.gdx.math.MathUtils.cos;
+import static com.badlogic.gdx.math.MathUtils.sin;
+
+
 /**
  * Contains the logic for the Enemy Bullet
  */
@@ -21,8 +26,13 @@ public class EnemyBullet {
         velocity = new Vector2(0, 0);
         sprite = new Sprite(world.getAtlas().findRegion("badLaserBall"));
         sprite.setPosition(posX, posY);
-        changeInX = destX - posX;
-        changeInY = destY - posY;
+        float X = (destX - posX) * -1;
+        float Y =(destY - posY)* -1;
+
+        changeInX = destX - posX ; //(float) (sin((float) Math.atan(X/Y))* (Math.sqrt(Math.pow(X ,2)+ Math.pow(Y ,2))));
+        changeInY = destY - posY; //(float) (sin((float) Math.atan(X/Y))* (Math.sqrt(Math.pow(X ,2)+ Math.pow(Y ,2))));
+         //cos((float) Math.pow(destX, 2)) / posX
+        //sin((float) Math.pow(destY,2)) / posY
     }
 
     void kill() {

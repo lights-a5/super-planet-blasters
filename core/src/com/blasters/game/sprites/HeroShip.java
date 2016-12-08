@@ -84,6 +84,7 @@ public class HeroShip extends Fighter {
                 if (sprite.getBoundingRectangle().overlaps(enemy.sprite.getBoundingRectangle()) && !invincible) {
                     adjustHealth();
                     invincible = true;
+
                 }
             }
             for(EnemyBullet bullet : world.enemyBullets) {
