@@ -9,6 +9,9 @@ import java.util.Random;
 
 /**
  * Created by Adam on 12/8/2016.
+ * I wanted to make the angle similar to a bullet firing
+ * I haven't had enough time to make the angle right. my commented
+ * out things show what I was doing.
  */
 
 public class diveBomber extends Fighter {
