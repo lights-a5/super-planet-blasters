@@ -19,7 +19,7 @@ public class morcegoShip extends Fighter {
         health  = 7;
         TextureRegion fighter = world.getAtlas().findRegion("morcegoShip"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
-        sprite.setScale(.5f);
+        sprite.setScale(.5f, .5f);
         x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
         y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
         sprite.setPosition(x, y);
@@ -48,13 +48,12 @@ public class morcegoShip extends Fighter {
 
     @Override
     public void move(float delta) {
-        velocity.add(0, -250);
+        velocity.add(0, -200);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
     }
 
     private void die() {
-        world.powerups.add(new GreenPower(world, sprite.getX(), sprite.getY()));
         world.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }

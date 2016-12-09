@@ -67,6 +67,5 @@ public class Bullet {
         if (laserSprite.getY() > Gdx.graphics.getHeight() + laserSprite.getRegionHeight()) {
             world.bullets.removeValue(this, true);
         }
-        System.out.println("Bullet: " + laserSprite.getX() + ", " + laserSprite.getY());
     }
 }

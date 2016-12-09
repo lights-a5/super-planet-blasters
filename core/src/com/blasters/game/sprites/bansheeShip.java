@@ -27,7 +27,7 @@ public class bansheeShip extends Fighter {
     }
 
     public void update(float delta) {
-        velocity.add(0, -250);
+        velocity.add(0, -100);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
 
