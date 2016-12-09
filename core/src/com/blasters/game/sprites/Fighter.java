@@ -26,6 +26,7 @@ public abstract class Fighter{
     public Fighter(GameWorld world) {
         this.world = world;
         velocity = new Vector2(0,0);
+
         random = new Random();
         defineFighter();
     }
