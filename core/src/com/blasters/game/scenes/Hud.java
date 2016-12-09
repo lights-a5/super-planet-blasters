@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.blasters.game.SuperPlanetBlasters;
+import com.blasters.game.gameworld.GameWorld;
 
 /**
  * This is the HUD. It displays the health, score, and lives on the top of the screen. Currently,
@@ -22,35 +24,33 @@ import com.blasters.game.SuperPlanetBlasters;
 public class Hud implements Disposable {
     private Stage stage;
     private Viewport viewport;
+    private GameWorld game;
+    private ShapeRenderer shapeRenderer;
 
-    private int health;
     private int score;
-    private int lives;
 
-    private Label healthLabel;
     private Label scoreLabel;
-    private Label livesLabel;
 
-    public Hud(SpriteBatch sb) {
-        health = 2;
+    public Hud(GameWorld game, SpriteBatch sb) {
+        this.game = game;
         score = 0;
-        lives = 3;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
+        shapeRenderer = new ShapeRenderer();
 
         Table table = new Table();
 
         table.top();
 
         table.setFillParent(true);
+        Label scoreText = new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        healthLabel = new Label(String.format("%02d", health), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
         scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        livesLabel = new Label(String.format("%02d", lives), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        table.add(healthLabel).expandX().padTop(10);
-        table.add(scoreLabel).expandX().padTop(10);
-        table.add(livesLabel).expandX().padTop(10);
+        table.add(scoreText).expandX().padTop(10);
+        table.row();
+        table.add(scoreLabel).expandX().padTop(2);
 
         stage.addActor(table);
 
@@ -66,6 +66,12 @@ public class Hud implements Disposable {
     }
 
     public void draw() {
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.GRAY);
+        shapeRenderer.rect(0, 0, Gdx.graphics.getWidth(), 16);
+        shapeRenderer.setColor(Color.GREEN);
+        shapeRenderer.rect(0, 0, ((float)game.player.health/(float)game.player.maxHP) * Gdx.graphics.getWidth(), 16);
+        shapeRenderer.end();
         stage.draw();
     }
 

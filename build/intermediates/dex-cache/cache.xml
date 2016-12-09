@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Tyler\AndroidStudioProjects\super-planet-blasters\core\build\libs\core-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="70ff4c9b0acc48715000d670e3658121a2c5396c">
+        <dex dex="C:\Users\Tyler\AndroidStudioProjects\super-planet-blasters\android\build\intermediates\pre-dexed\debug\core-1.0_c0d16cc3c919876cfdcb844cdb1a7efe6bf1850c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Tyler\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx\1.9.4\4b4b7962d1bc75af0438f5c81ec1010557bc9ee5\gdx-1.9.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="4b4b7962d1bc75af0438f5c81ec1010557bc9ee5">
+        <dex dex="C:\Users\Tyler\AndroidStudioProjects\super-planet-blasters\android\build\intermediates\pre-dexed\debug\gdx-1.9.4_9d7da8a483948a14320a27a0bd7681cec726ed35.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Tyler\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-bullet\1.9.4\971a174538f313b9f975b8a6bbdf3aad04bb564d\gdx-bullet-1.9.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="971a174538f313b9f975b8a6bbdf3aad04bb564d">
+        <dex dex="C:\Users\Tyler\AndroidStudioProjects\super-planet-blasters\android\build\intermediates\pre-dexed\debug\gdx-bullet-1.9.4_e13ead1e754f55be6f5c0bc0d51e4a61d4bf15f8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Tyler\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-backend-android\1.9.4\194b33382d6d58fad031521ba3331d926c476c9b\gdx-backend-android-1.9.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="194b33382d6d58fad031521ba3331d926c476c9b">
+        <dex dex="C:\Users\Tyler\AndroidStudioProjects\super-planet-blasters\android\build\intermediates\pre-dexed\debug\gdx-backend-android-1.9.4_b0563c2e7822927f968cd0bfeefe114f83350f8b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Tyler\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-box2d\1.9.4\98a0d25c9f0637fecac6e4aacf7287aa635964f5\gdx-box2d-1.9.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="98a0d25c9f0637fecac6e4aacf7287aa635964f5">
+        <dex dex="C:\Users\Tyler\AndroidStudioProjects\super-planet-blasters\android\build\intermediates\pre-dexed\debug\gdx-box2d-1.9.4_bb11825daea3fca9aa92c88385e6f91ad06ac28a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Tyler\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-ai\1.8.0\ec30677d8ab1a8b8aa4b853c5f4e4b1361f50bf5\gdx-ai-1.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="ec30677d8ab1a8b8aa4b853c5f4e4b1361f50bf5">
+        <dex dex="C:\Users\Tyler\AndroidStudioProjects\super-planet-blasters\android\build\intermediates\pre-dexed\debug\gdx-ai-1.8.0_d093cb479f9964dacd4b8100dab5f8b993b46ef7.jar" />
+    </item>
+
+</items>

@@ -15,13 +15,9 @@ import com.blasters.game.gameworld.GameWorld;
  */
 
 public class HeroShip extends Fighter {
-    private final float INVINCIBLETIME = 8f;
+    private final float INVINCIBLETIME = 2f;
     private float timeInvincible;
-    private TextureRegion hero;
-    private TextureRegion redHero;
-    private TextureRegion orangeHero;
-    private TextureRegion greenHero;
-    public boolean invincible;
+    private boolean invincible;
     private boolean isDead;
     public boolean bulletMid;
     public boolean bulletSides;
@@ -31,8 +27,9 @@ public class HeroShip extends Fighter {
     public boolean yellow;
     public boolean red;
     public boolean red2;
+    public int maxHP;
 
-    public enum State{ BLUE, GREEN, ORANGE, RED}
+    private enum State{ BLUE, GREEN, ORANGE, RED}
     State colorState;
 
     public HeroShip(GameWorld world) {
@@ -41,9 +38,9 @@ public class HeroShip extends Fighter {
 
     public void defineFighter() {
         value = 999999;
-        hero = new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster"));
-        sprite = new Sprite(hero);
-        health = 2;
+        sprite = new Sprite(new TextureRegion(world.getPlayerAtlas().findRegion("PlanetBlaster")));
+        maxHP = 5;
+        health = maxHP;
         invincible = false;
         timeInvincible = 0;
         isDead = false;
@@ -58,7 +55,8 @@ public class HeroShip extends Fighter {
         red = false;
         red2 = false;
     }
-   /* public void changeColor() {
+    /*
+    public void changeColor() {
         switch (colorState) {
             case BLUE:
                 sprite.setRegion(redHero);
@@ -78,7 +76,8 @@ public class HeroShip extends Fighter {
                 colorState = State.BLUE;
                 break;
         }
-    }*/
+    }
+    */
 
     public void update(float delta) {
         checkInput();
@@ -93,12 +92,19 @@ public class HeroShip extends Fighter {
             for(Fighter enemy : world.enemies) {
                 if (sprite.getBoundingRectangle().overlaps(enemy.sprite.getBoundingRectangle()) && !invincible) {
                     adjustHealth();
-                    if (health == 0) {
-                        die();
-                    } else {
-                        invincible = true;
-                    }
+                    invincible = true;
+
                 }
+            }
+            for(EnemyBullet bullet : world.enemyBullets) {
+                if (sprite.getBoundingRectangle().overlaps(bullet.sprite.getBoundingRectangle()) && !invincible) {
+                    adjustHealth();
+                    invincible = true;
+                    bullet.kill();
+                }
+            }
+            if (health <= 0) {
+                die();
             }
         }
     }
@@ -124,7 +130,7 @@ public class HeroShip extends Fighter {
     public void move(float delta){
 
     }
-    public void adjustHealth(){
+    private void adjustHealth(){
         if(shields > 0){
             shields--;
         }
@@ -187,4 +193,8 @@ public class HeroShip extends Fighter {
         sprite.setScale(((float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight()) / 2);
         sprite.setPosition(x, y);
     }
+    public void addShield() {
+        shields++;
+    }
+
 }

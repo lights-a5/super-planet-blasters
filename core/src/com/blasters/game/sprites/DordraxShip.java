@@ -17,12 +17,17 @@ public class DordraxShip extends Fighter {
     public void defineFighter() {
         value = 3;
         health  = 12;
+        speed = -91;
         TextureRegion fighter = world.getAtlas().findRegion("dordraxShip"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
+        x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
+        y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
+        sprite.setPosition(x, y);
         sprite.setScale(.5f, .5f);
         x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
         y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
         sprite.setPosition(x, y);
+        bulletDelay = 3f;
     }
 
     public void update(float delta) {
@@ -44,6 +49,11 @@ public class DordraxShip extends Fighter {
                 }
             }
         }
+        currentDelay += delta;
+        if (currentDelay >= bulletDelay) {
+            currentDelay = 0f;
+            fireBullet();
+        }
     }
 
     @Override
@@ -51,6 +61,11 @@ public class DordraxShip extends Fighter {
         velocity.add(0, -190);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
+
+    }
+
+    private void fireBullet() {
+        world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.DIR8);
     }
 
     private void die() {

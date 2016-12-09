@@ -21,6 +21,8 @@ public class Bullet {
     private Vector2 velocity;
     public Sprite laserSprite;
     private Texture hits;
+    boolean isDead = false;
+    boolean animateFinished = false;
 
 
 

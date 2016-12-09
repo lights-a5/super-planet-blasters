@@ -33,7 +33,7 @@ public class GameScreen implements Screen, InputProcessor {
         Viewport gameViewPort = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), game.camera);
         gameViewPort.apply();
         this.game = game;
-        world = new GameWorld(this);
+        world = new GameWorld(game);
 
     }
 
