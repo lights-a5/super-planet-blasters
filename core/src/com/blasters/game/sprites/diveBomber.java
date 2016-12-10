@@ -70,7 +70,7 @@ public class diveBomber extends Fighter {
         //will not fire just fly toward player
     }
 
-    private void die() {
+    public void die() {
         world.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }

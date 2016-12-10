@@ -54,6 +54,7 @@ public class LoadingScreen implements Screen {
         game.assetManager.load("soundOff.png", Texture.class);
         game.assetManager.load("paper_planet1.png", Texture.class);
         game.assetManager.load("starBG.JPG", Texture.class);
+        game.assetManager.load("uiskin.atlas", TextureAtlas.class);
 
     }
 

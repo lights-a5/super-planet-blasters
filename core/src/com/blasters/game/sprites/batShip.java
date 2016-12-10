@@ -82,7 +82,7 @@ public class batShip extends Fighter {
         sprite.translate(velocity.x, velocity.y);
     }
 
-    private void die() {
+    public void die() {
         world.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }

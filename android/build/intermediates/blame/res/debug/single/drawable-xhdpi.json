@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\SHELIVES\\Documents\\super-planet-blasters\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_launcher.png",
+        "source": "C:\\Users\\SHELIVES\\Documents\\super-planet-blasters\\android\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\Tyler\\AndroidStudioProjects\\super-planet-blasters\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_launcher.png",
         "source": "C:\\Users\\Tyler\\AndroidStudioProjects\\super-planet-blasters\\android\\res\\drawable-xhdpi\\ic_launcher.png"
     }

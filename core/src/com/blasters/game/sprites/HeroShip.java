@@ -3,8 +3,10 @@ package com.blasters.game.sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 import com.blasters.game.gameworld.GameWorld;
 
 /**
@@ -28,9 +30,8 @@ public class HeroShip extends Fighter {
     public boolean red;
     public boolean red2;
     public int maxHP;
-
-    private enum State{ BLUE, GREEN, ORANGE, RED}
-    State colorState;
+    private Animation deathAnimation;
+    private float deathTimer;
 
     public HeroShip(GameWorld world) {
         super(world);
@@ -54,57 +55,52 @@ public class HeroShip extends Fighter {
         yellow = false;
         red = false;
         red2 = false;
+        deathTimer = 0;
+        setDeathAnimation();
     }
-    /*
-    public void changeColor() {
-        switch (colorState) {
-            case BLUE:
-                sprite.setRegion(redHero);
-                colorState = State.RED;
-                break;
-            case RED:
-                sprite.setRegion(orangeHero);
-                colorState  = State.ORANGE;
-                break;
-            case ORANGE:
-                sprite.setRegion(greenHero);
-                colorState = State.GREEN;
-                break;
-            case GREEN:
-            default:
-                sprite.setRegion(hero);
-                colorState = State.BLUE;
-                break;
+
+    private void setDeathAnimation() {
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for(int i = 1; i < 5; i++) {
+            frames.add(new TextureRegion(world.getAtlas().getTextures().first(), i * 103 + 11, 82, 103, 84));
         }
+
+        deathAnimation = new Animation(.3f, frames, Animation.PlayMode.NORMAL);
+
     }
-    */
 
     public void update(float delta) {
-        checkInput();
-        if (invincible) {
-            timeInvincible += delta;
-            if (timeInvincible >= INVINCIBLETIME) {
-                invincible = false;
-                timeInvincible = 0;
-            }
+        if (isDead) {
+            deathTimer += delta;
+            sprite.setRegion(deathAnimation.getKeyFrame(deathTimer));
         }
         else {
-            for(Fighter enemy : world.enemies) {
-                if (sprite.getBoundingRectangle().overlaps(enemy.sprite.getBoundingRectangle()) && !invincible) {
-                    adjustHealth();
-                    invincible = true;
+            checkInput();
+            if (invincible) {
+                timeInvincible += delta;
+                if (timeInvincible >= INVINCIBLETIME) {
+                    invincible = false;
+                    timeInvincible = 0;
+                }
+            } else {
+                for (Fighter enemy : world.enemies) {
+                    if (sprite.getBoundingRectangle().overlaps(enemy.sprite.getBoundingRectangle()) && !invincible) {
+                        adjustHealth();
+                        enemy.die();
+                        invincible = true;
 
+                    }
                 }
-            }
-            for(EnemyBullet bullet : world.enemyBullets) {
-                if (sprite.getBoundingRectangle().overlaps(bullet.sprite.getBoundingRectangle()) && !invincible) {
-                    adjustHealth();
-                    invincible = true;
-                    bullet.kill();
+                for (EnemyBullet bullet : world.enemyBullets) {
+                    if (sprite.getBoundingRectangle().overlaps(bullet.sprite.getBoundingRectangle()) && !invincible) {
+                        adjustHealth();
+                        invincible = true;
+                        bullet.kill();
+                    }
                 }
-            }
-            if (health <= 0) {
-                die();
+                if (health <= 0) {
+                    die();
+                }
             }
         }
     }
@@ -119,7 +115,7 @@ public class HeroShip extends Fighter {
                     Gdx.graphics.getHeight() / 2 - sprite.getHeight() / 2);
         }
     }
-    private void die() {
+    public void die() {
         isDead = true;
     }
 
@@ -138,11 +134,7 @@ public class HeroShip extends Fighter {
             health--;
     }
 
-    public void initializeSprites(){
-
-    }
-
-    public void determineColor(){
+    void determineColor(){
         float x = sprite.getX();
         float y = sprite.getY();
         if(blue){
@@ -193,8 +185,12 @@ public class HeroShip extends Fighter {
         sprite.setScale(((float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight()) / 2);
         sprite.setPosition(x, y);
     }
-    public void addShield() {
+    void addShield() {
         shields++;
+    }
+
+    public boolean isDeathDone() {
+        return deathTimer > deathAnimation.getAnimationDuration();
     }
 
 }

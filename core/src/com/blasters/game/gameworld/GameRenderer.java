@@ -38,7 +38,9 @@ public class GameRenderer {
         drawFighters();
         drawPowers();
         drawBullets();
-        myWorld.player.sprite.draw(game.sb);
+        if (!myWorld.player.isDead() || !myWorld.player.isDeathDone()) {
+            myWorld.player.sprite.draw(game.sb);
+        }
         game.sb.end();
         myWorld.hud.draw();
     }

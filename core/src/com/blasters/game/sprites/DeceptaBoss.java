@@ -9,14 +9,14 @@ import com.blasters.game.gameworld.GameWorld;
  * Created by Adam on 11/27/2016.
  */
 
-public class DeceptaBoss extends Fighter {
+class DeceptaBoss extends Fighter {
 
-    boolean moveRight;
-    boolean isShooting;
-    float shootDelay;
-    float shootPauseTime;
+    private boolean moveRight;
+    private boolean isShooting;
+    private float shootDelay;
+    private float shootPauseTime;
 
-    public DeceptaBoss(GameWorld world) {
+    DeceptaBoss(GameWorld world) {
         super(world);
     }
 
@@ -100,7 +100,7 @@ public class DeceptaBoss extends Fighter {
 
     }
 
-    private void die() {
+    public void die() {
         //animate death
         world.hud.addScore(value);
         world.enemies.removeValue(this, true);

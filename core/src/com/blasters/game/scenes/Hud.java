@@ -5,15 +5,21 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.gameworld.GameWorld;
+import com.blasters.game.screens.GameScreen;
 
 /**
  * This is the HUD. It displays the health, score, and lives on the top of the screen. Currently,
@@ -23,9 +29,9 @@ import com.blasters.game.gameworld.GameWorld;
 
 public class Hud implements Disposable {
     private Stage stage;
-    private Viewport viewport;
     private GameWorld game;
     private ShapeRenderer shapeRenderer;
+    private TextButton resetButton;
 
     private int score;
 
@@ -34,7 +40,7 @@ public class Hud implements Disposable {
     public Hud(GameWorld game, SpriteBatch sb) {
         this.game = game;
         score = 0;
-        viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
+        Viewport viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         shapeRenderer = new ShapeRenderer();
 
@@ -53,7 +59,27 @@ public class Hud implements Disposable {
         table.add(scoreLabel).expandX().padTop(2);
 
         stage.addActor(table);
+        Gdx.input.setInputProcessor(stage);
 
+        Skin skin = new Skin();
+        skin.addRegions(game.game.assetManager.get("uiskin.atlas", TextureAtlas.class));
+        skin.add("default-font", new BitmapFont());
+        skin.load(Gdx.files.internal("uiskin.json"));
+
+        resetButton = new TextButton("Try Again?", skin);
+        resetButton.setPosition((Gdx.graphics.getWidth() / 2) - (resetButton.getWidth() / 2), Gdx.graphics.getHeight() / 2);
+
+    }
+
+    public void displayGameOver() {
+        resetButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.game.setScreen(game.game.menuScreen);
+
+            }
+        });
+            stage.addActor(resetButton);
     }
 
     public void addScore(int value) {

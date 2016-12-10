@@ -28,7 +28,7 @@ public class SuperPlanetBlasters extends Game {
     public SpriteBatch sb;
     public Screen gameScreen;
     public Screen menuScreen;
-    public Screen loadingScreen;
+    private Screen loadingScreen;
     public boolean playMusic;
     public OrthographicCamera camera;
     public AssetManager assetManager;

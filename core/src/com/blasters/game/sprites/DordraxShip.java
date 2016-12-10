@@ -9,8 +9,8 @@ import com.blasters.game.gameworld.GameWorld;
  * Created by Adam on 11/24/2016.
  */
 
-public class DordraxShip extends Fighter {
-    public DordraxShip(GameWorld world) {
+class DordraxShip extends Fighter {
+    DordraxShip(GameWorld world) {
         super(world);
     }
 
@@ -68,7 +68,7 @@ public class DordraxShip extends Fighter {
         world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.DIR8);
     }
 
-    private void die() {
+    public void die() {
         world.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }

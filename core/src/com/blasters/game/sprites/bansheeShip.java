@@ -68,7 +68,7 @@ public class bansheeShip extends Fighter {
         world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.HOMING);
     }
 
-    private void die() {
+    public void die() {
         world.hud.addScore(value);
         world.enemies.removeValue(this, true);
     }
