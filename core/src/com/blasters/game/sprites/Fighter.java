@@ -39,4 +39,5 @@ public abstract class Fighter{
     public abstract void update(float delta);
     public abstract void move(float delta);
     public abstract void die();
+
 }

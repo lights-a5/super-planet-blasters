@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="bad4db2695236e4be9a9134d2eb84dcbc1475e52">
+        sha1="d3117385f6f4d4b9b2d4353f20a4eda91a861d64">
         <dex dex="C:\Users\Adam\Documents\Fall Semester 2016\CS 246 (java)\super-planet-blasters\android\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_6a40c62bb488602cd118581801cf1cada039df52\classes.dex" />
     </item>
     <item
@@ -43,7 +43,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="65abf49ee71bacf121a5d7326f3d664130a0f698">
+        sha1="ac590927351ef43b80b9887e734715f7e453a1f2">
         <dex dex="C:\Users\Adam\Documents\Fall Semester 2016\CS 246 (java)\super-planet-blasters\android\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_9f6b0c05ed341e393236495eed3d90da3ff01b16\classes.dex" />
     </item>
     <item
