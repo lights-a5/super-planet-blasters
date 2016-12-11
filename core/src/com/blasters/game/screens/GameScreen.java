@@ -15,7 +15,7 @@ import com.blasters.game.gameworld.GameRenderer;
 import com.blasters.game.gameworld.GameWorld;
 import com.blasters.game.scenes.Hud;
 
-import javax.swing.text.View;
+//import javax.swing.text.View;
 
 /**
  * The game screen class. This is the main screen where

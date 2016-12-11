@@ -1,18 +1,25 @@
 package com.blasters.game.sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.blasters.game.gameworld.GameWorld;
 
 /**
- * The basic red fighter.
+ * The basic fighter shoots down w/ offset
+ * -adam
  */
 
 public class batShip extends Fighter {
     public batShip(GameWorld world) {
         super(world);
     }
+    private Animation deathAnimation;
+    private boolean isDead;
+    private float deathTimer;
 
 
     public void defineFighter() {
@@ -26,10 +33,19 @@ public class batShip extends Fighter {
         y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
         sprite.setPosition(x, y);
         bulletDelay = 1.2f;
+        setBadGuyDeath();
     }
 
     public void update(float delta) {
         move(delta);
+        if (isDead) {
+            deathTimer += delta;
+            sprite.setRegion(deathAnimation.getKeyFrame(deathTimer));
+            if (deathAnimation.isAnimationFinished(deathTimer))
+            {
+                world.enemies.removeValue(this, true);
+            }
+        }
 
         if (sprite.getY() + sprite.getHeight() < 0) {
             world.enemies.removeValue(this, true);
@@ -41,7 +57,8 @@ public class batShip extends Fighter {
             if (sprite.getBoundingRectangle().overlaps(bullet.laserSprite.getBoundingRectangle())) {
                 health--;
                 //bullet
-                bullet.kill();
+                if(!isDead){
+                    bullet.kill();}
                 if(health <= 0) {
                     die();
                 }
@@ -55,18 +72,32 @@ public class batShip extends Fighter {
     }
 
     private void fireBullet() {
-        world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.FORWARD);
+        if (!isDead) {
+            world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.FORWARD);
+        }
     }
 
     @Override
     public void move(float delta) {
+
         velocity.add(0, speed);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
     }
 
-    private void die() {
+    public void die() {
+        isDead = true;
         world.hud.addScore(value);
-        world.enemies.removeValue(this, true);
+
+    }
+
+    public void setBadGuyDeath() {
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for(int i = 1; i < 5; i++) {
+            frames.add(new TextureRegion(world.getAtlas().getTextures().first(), i * 103 + 11, 82, 103, 84));
+        }
+
+        deathAnimation = new Animation(.1f, frames, Animation.PlayMode.NORMAL);
+
     }
 }

@@ -1,18 +1,24 @@
 package com.blasters.game.sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 import com.blasters.game.gameworld.GameWorld;
 
 /**
  * Created by Adam on 11/24/2016.
  */
 
-public class DordraxShip extends Fighter {
-    public DordraxShip(GameWorld world) {
+class DordraxShip extends Fighter {
+    DordraxShip(GameWorld world) {
         super(world);
     }
+
+    private Animation deathAnimation;
+    private boolean isDead;
+    private float deathTimer;
 
     public void defineFighter() {
         value = 3;
@@ -24,11 +30,23 @@ public class DordraxShip extends Fighter {
         y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
         sprite.setPosition(x, y);
         sprite.setScale(.5f, .5f);
+        x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
+        y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
+        sprite.setPosition(x, y);
         bulletDelay = 3f;
+        setBadGuyDeath();
     }
 
     public void update(float delta) {
         move(delta);
+        if (isDead) {
+            deathTimer += delta;
+            sprite.setRegion(deathAnimation.getKeyFrame(deathTimer));
+            if (deathAnimation.isAnimationFinished(deathTimer))
+            {
+                world.enemies.removeValue(this, true);
+            }
+        }
 
         if (sprite.getY() + sprite.getHeight() < 0) {
             world.enemies.removeValue(this, true);
@@ -40,7 +58,8 @@ public class DordraxShip extends Fighter {
             if (sprite.getBoundingRectangle().overlaps(bullet.laserSprite.getBoundingRectangle())) {
                 health--;
                 //bullet
-                bullet.kill();
+                if(!isDead){
+                    bullet.kill();}
                 if(health <= 0) {
                     die();
                 }
@@ -55,18 +74,34 @@ public class DordraxShip extends Fighter {
 
     @Override
     public void move(float delta) {
-        velocity.add(0, -91);
+        velocity.add(0, -190);
         velocity.scl(delta);
-
         sprite.translate(velocity.x, velocity.y);
+
     }
 
     private void fireBullet() {
-        world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.DIR8);
+        if (!isDead) {
+            world.bgen.genPattern(sprite.getX() + sprite.getRegionWidth() / 4, sprite.getY(), EnemyBulletGenerator.patternType.DIR8);
+        }
     }
 
-    private void die() {
+    public void die() {
+        isDead = true;
         world.hud.addScore(value);
-        world.enemies.removeValue(this, true);
+
     }
+
+
+    public void setBadGuyDeath() {
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for(int i = 1; i < 5; i++) {
+            frames.add(new TextureRegion(world.getAtlas().getTextures().first(), i * 103 + 11, 82, 103, 84));
+        }
+
+        deathAnimation = new Animation(.3f, frames, Animation.PlayMode.NORMAL);
+
+    }
+
+
 }

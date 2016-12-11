@@ -25,11 +25,12 @@ public abstract class Fighter{
     float y;
     float bulletDelay;
     float currentDelay;
-    
+
     Fighter(GameWorld world) {
         this.world = world;
         currentDelay = 0f;
         velocity = new Vector2(0,0);
+
         random = new Random();
         defineFighter();
     }
@@ -37,4 +38,6 @@ public abstract class Fighter{
     protected abstract void defineFighter();
     public abstract void update(float delta);
     public abstract void move(float delta);
+    public abstract void die();
+
 }

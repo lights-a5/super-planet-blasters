@@ -31,7 +31,7 @@ public class EnemyBullet {
 
         changeInX = destX - posX ; //(float) (sin((float) Math.atan(X/Y))* (Math.sqrt(Math.pow(X ,2)+ Math.pow(Y ,2))));
         changeInY = destY - posY; //(float) (sin((float) Math.atan(X/Y))* (Math.sqrt(Math.pow(X ,2)+ Math.pow(Y ,2))));
-         //cos((float) Math.pow(destX, 2)) / posX
+        //cos((float) Math.pow(destX, 2)) / posX
         //sin((float) Math.pow(destY,2)) / posY
     }
 

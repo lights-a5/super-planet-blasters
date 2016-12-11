@@ -42,6 +42,9 @@ public class BluePower extends Power {
     }
     private void die(){
         //Shields user and ideally activate blue section and draw shield
+        world.player.shields++;
+        world.player.blue = true;
+        world.player.determineColor();
         world.player.addShield();
         world.powerups.removeValue(this, true);
     }

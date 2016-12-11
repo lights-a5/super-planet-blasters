@@ -56,6 +56,7 @@ public class MenuScreen implements Screen, InputProcessor {
         // This will be turned into a sprite later as stretch goals
         extras = game.assetManager.get("paper_planet1.png", Texture.class);
         Gdx.app.log("MenuScreen", "Show Called");
+        Gdx.input.setInputProcessor(this);//
 
 
     }
@@ -75,7 +76,7 @@ public class MenuScreen implements Screen, InputProcessor {
         game.sb.draw(logo, (Gdx.graphics.getWidth() / 2 - 240), (Gdx.graphics.getHeight() / 2 -100),500, 500);
         game.sb.draw(extras, (Gdx.graphics.getWidth() /2 - 280), (Gdx.graphics.getHeight() / 14 -12), 130, 130 );
         game.sb.end();
-        Gdx.input.setInputProcessor(this);//
+
 
     }
 
@@ -139,6 +140,7 @@ public class MenuScreen implements Screen, InputProcessor {
         if (start.getBoundingRectangle().contains(screenX, (Gdx.graphics.getHeight() - screenY))) {
             menuMusic.pause();
             game.setScreen(game.gameScreen);
+
         }
         if (sound.getBoundingRectangle().contains(screenX, (Gdx.graphics.getHeight() - screenY))) {
             if (game.playMusic) {

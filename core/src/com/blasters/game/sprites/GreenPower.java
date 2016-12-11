@@ -3,28 +3,26 @@ package com.blasters.game.sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.blasters.game.SuperPlanetBlasters;
 import com.blasters.game.gameworld.GameWorld;
 
 /**
- * Created by Tyler on 11/22/2016.
+ * Created by Adam 12/10/16.
  */
 
-public class YellowPower extends Power{
-
-
-    YellowPower(GameWorld world) {
+public class GreenPower extends Power {
+    float x;
+    float y;
+    public GreenPower(GameWorld world, float x, float y) {
         super(world);
+        this.x = x;
+        this.y = y;
+        sprite.setPosition(x, y);
     }
 
     @Override
     protected void definePower() {
-        TextureRegion powerup = world.getAtlas().findRegion("powerupYellow_bolt");
+        TextureRegion powerup = world.getAtlas().findRegion("powerupGreen");
         sprite = new Sprite(powerup);
-        x = random.nextInt(Gdx.graphics.getWidth() - sprite.getRegionWidth());
-        y = random.nextInt(Gdx.graphics.getHeight()) + Gdx.graphics.getHeight();
-        sprite.setPosition(x, y);
-
     }
 
     @Override
@@ -35,24 +33,19 @@ public class YellowPower extends Power{
         }
         if (sprite.getBoundingRectangle().overlaps(world.player.sprite.getBoundingRectangle())) {
             die();
-            Gdx.app.log("YellowPower", "activated");
+            Gdx.app.log("GreenPower", "activated");
         }
     }
 
     @Override
     public void move(float delta) {
-        velocity.add(0, -400);
+        velocity.add(0, -39);
         velocity.scl(delta);
         sprite.translate(velocity.x, velocity.y);
     }
 
-    public void die(){
-        if(world.player.faster < .1){
-            world.player.faster += .034;
-        }
-        world.player.yellow = true;
-        world.player.determineColor();
+    public void die() {
+        world.player.health++;
         world.powerups.removeValue(this, true);
     }
-
 }

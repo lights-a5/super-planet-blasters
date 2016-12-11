@@ -9,7 +9,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Super Planet Blasters"
         android:theme="@style/GdxTheme" >
         <activity
             android:name="com.blasters.game.AndroidLauncher"

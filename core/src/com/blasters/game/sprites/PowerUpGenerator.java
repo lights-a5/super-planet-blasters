@@ -19,11 +19,12 @@ public class PowerUpGenerator {
         if(pick == 0){
             return new BluePower(game);
         }
-        else if (pick == 1){
+        else if (pick == 1) {
             return new RedPower(game);
         }
         else{
             return new YellowPower(game);
         }
     }
+
 }

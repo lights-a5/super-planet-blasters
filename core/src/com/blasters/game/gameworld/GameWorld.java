@@ -48,17 +48,17 @@ public class GameWorld {
     private float BULLETDELAY = .198f; //Delay between bullets. Increase for less bullets.
 
     private float currentDelay;
-    private SuperPlanetBlasters game;
+    public SuperPlanetBlasters game;
     private FighterGenerator fgen;
     private PowerUpGenerator pgen;
     public EnemyBulletGenerator bgen;
     public Hud hud;
 
     public GameWorld(SuperPlanetBlasters game) {
+
         this.game = game;
         atlas = new TextureAtlas("generalAtlas.pack");
         playerAtlas = new TextureAtlas("PlayerAtlas.pack");
-        // we might want to make two
         player = new HeroShip(this);
         enemies  = new DelayedRemovalArray<Fighter>();
         bullets = new DelayedRemovalArray<Bullet>();
@@ -78,18 +78,26 @@ public class GameWorld {
      * it is used. This is how we move the game along.
      */
     public void update(float delta) {
-        checkForSpawn(delta); //checks if we need to spawn
-        for (Fighter enemy : enemies) { //for every fighter
-            enemy.update(delta);        //update it
+        if (!player.isDead()) {
+            checkForSpawn(delta); //checks if we need to spawn
+            for (Fighter enemy : enemies) { //for every fighter
+                enemy.update(delta);        //update it
+            }
+            for (Bullet bullet : bullets) { //for every bullet
+                bullet.update(delta);       //update it
+            }
+            for (Power power : powerups) {
+                power.update(delta);
+            }
+            for (EnemyBullet bullet : enemyBullets) {
+                bullet.update(delta);
+            }
         }
-        for (Bullet bullet : bullets) { //for every bullet
-            bullet.update(delta);       //update it
-        }
-        for(Power power : powerups){
-            power.update(delta);
-        }
-        for (EnemyBullet bullet : enemyBullets) {
-            bullet.update(delta);
+        if (player.isDead() && player.isDeathDone()) {
+            game.setScreen(game.menuScreen);
+            game.gameScreen.dispose();
+            this.dispose();
+            player.health = player.maxHP;
         }
         player.update(delta);           //then update the player
     }
@@ -103,7 +111,7 @@ public class GameWorld {
             level++;                                //increase level
             spawnEnemies();                         //spawn enemies
         }
-        if(currentDelay >= BULLETDELAY) {
+        if(currentDelay >= BULLETDELAY && !player.isDead()) {
             if(player.bulletMid){
                 Bullet one = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.1f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f ));
                 bullets.add(one);
@@ -114,9 +122,10 @@ public class GameWorld {
                 Bullet three = new Bullet(this, (player.sprite.getX() + player.sprite.getWidth() / 2.49f), (player.sprite.getY() + player.sprite.getHeight() / 2.5f));
                 bullets.add(three);
             }
-            if(player.faster) {
-                BULLETDELAY = .089f;
-                currentDelay =0f;
+
+            currentDelay = player.faster;
+            if(player.yellow) {
+                currentDelay = player.faster;
             }
             else
             {

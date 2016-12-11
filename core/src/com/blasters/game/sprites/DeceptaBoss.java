@@ -7,16 +7,17 @@ import com.blasters.game.gameworld.GameWorld;
 
 /**
  * Created by Adam on 11/27/2016.
+ * Moves down then side to side has it's own fire pattern
  */
 
-public class DeceptaBoss extends Fighter {
+class DeceptaBoss extends Fighter {
 
-    boolean moveRight;
-    boolean isShooting;
-    float shootDelay;
-    float shootPauseTime;
+    private boolean moveRight;
+    private boolean isShooting;
+    private float shootDelay;
+    private float shootPauseTime;
 
-    public DeceptaBoss(GameWorld world) {
+    DeceptaBoss(GameWorld world) {
         super(world);
     }
 
@@ -25,7 +26,7 @@ public class DeceptaBoss extends Fighter {
         isShooting = false;
         moveRight = false;
         value = 100;
-        health  = 570;
+        health = 570;
         TextureRegion fighter = world.getAtlas().findRegion("deceptaBoss"); //updated to reflect new atlas
         sprite = new Sprite(fighter);
         sprite.setPosition(250, 900);
@@ -71,18 +72,18 @@ public class DeceptaBoss extends Fighter {
 
         }
         shootPauseTime += delta;
-        if(shootPauseTime >= shootDelay ) {
+        if (shootPauseTime >= shootDelay) {
             isShooting = true;
             shootPauseTime = 0;
         }
 
-        if(isShooting) { //please take a look at my logic, i was trying to make it pause after a bit
+        if (isShooting) { //please take a look at my logic, i was trying to make it pause after a bit
             currentDelay += delta;
             if (currentDelay >= bulletDelay) {
                 currentDelay = 0;
                 fireBullet();
             }
-            if(shootPauseTime >= shootDelay*2){
+            if (shootPauseTime >= shootDelay * 2) {
                 isShooting = false;
                 shootPauseTime = 0;
             }
@@ -100,7 +101,7 @@ public class DeceptaBoss extends Fighter {
 
     }
 
-    private void die() {
+    public void die() {
         //animate death
         world.hud.addScore(value);
         world.enemies.removeValue(this, true);
