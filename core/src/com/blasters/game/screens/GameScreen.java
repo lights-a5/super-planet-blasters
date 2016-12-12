@@ -33,12 +33,13 @@ public class GameScreen implements Screen, InputProcessor {
         Viewport gameViewPort = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), game.camera);
         gameViewPort.apply();
         this.game = game;
-        world = new GameWorld(game);
+
 
     }
 
     @Override
     public void show() {
+        world = new GameWorld(game);
         renderer = new GameRenderer(world, this);
         gameMusic = game.assetManager.get("MOI.mp3", Music.class);
         if(game.playMusic) {
