@@ -25,6 +25,7 @@ public class EnemyBullet {
         this.world = world;
         velocity = new Vector2(0, 0);
         sprite = new Sprite(world.getAtlas().findRegion("badLaserBall"));
+        sprite.setScale(.6f,.6f);
         sprite.setPosition(posX, posY);
         float X = (destX - posX) * -1;
         float Y =(destY - posY)* -1;
