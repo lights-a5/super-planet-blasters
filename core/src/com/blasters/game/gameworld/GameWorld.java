@@ -108,7 +108,7 @@ public class GameWorld {
      */
     private void checkForSpawn(float delta) {
         if (enemies == null || enemies.size == 0) { //if no enemies
-            level++;                                //increase level
+            level ++;                                //increase level
             spawnEnemies();                         //spawn enemies
         }
         if(currentDelay >= BULLETDELAY && !player.isDead()) {
