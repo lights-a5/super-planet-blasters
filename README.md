@@ -30,12 +30,11 @@ The GUI interface will wait for user input. It will create a new game instance o
 mute the sound if the sound off button is pressed. 
 Once the game starts It will begin the game music and the background scrolling. 
 We will have patterns and rules set up for each level of gameplay. Small enemies that 
-spawn from the top and top sides and large enemies that spawn and move slowly to appear
-stationary. This continues until the user ship is destroyed and the new “game over” intent
-will start. From that screen the process can start again or go to the main menu activity. 
+spawn from the top and large enemies that spawn and move slowly. This continues until the user ship is
+destroyed and the “game over” button will show. From that the process can start again at the main menu screen. 
 Gameplay itself will consist of the main ship constantly firing as the user moves it 
 around by touch (stretch goal could be gyro if the device allows). Waves of small ships
-will come in on the predesigned patterns randomly and shoot lasers that can kill the main 
+will come in randomly and shoot lasers that can kill the main 
 user ship. On intervals, bigger ships that are meant to appear stationary will appear and
 shoot as well. For a stretch, we would also make big guns on planets target the user for 
 a few seconds and give a warning before firing a laser in the direction of the last 
@@ -47,5 +46,5 @@ shoot many bullets until “dead” or until the user is “dead”. Music and s
 effects will play throughout the game.
 Most of these different objects react while the game is progressing. 
 We are using a framework called libGDX which handles things such as game 
-sprites and music and positioning. 
+sprites changes activities to screens. 
 
